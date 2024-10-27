@@ -1,10 +1,6 @@
-void gotoxy(int x, int y)
-{
-    COORD coord;
-    coord.X = (short)x;
-    coord.Y = (short)y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
+#include <stdio.h>
+#include <windows.h>
+#include "funcoes.h"
 
 // Montar a tela
 void tela()
@@ -40,4 +36,5 @@ void tela()
     printf("MSG.:");
     gotoxy(01, 24);
     printf("+-----------------------------------------------------------------------------+");
+    getch();
 }

@@ -44,10 +44,8 @@ typedef struct
 } Lista_ContaBancaria;
 
 
-
-
-
-
 void tela();
+void tela_CadastroDeContas();
+void tela_MovimentacaoFinanceira();
 
 #endif

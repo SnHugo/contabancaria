@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include <stdlib.h>
 #include <conio.h>
 #include "funcoes.h"
 
@@ -14,6 +15,10 @@ void gotoxy(int x, int y)
 int main()
 {
     int opcao;
+
+    Lista_ContaBancaria lista;
+
+    iniciar_lista(&lista);
     
     do
     {
@@ -33,10 +38,10 @@ int main()
         switch (opcao)
         {
             case 1:
-                tela_CadastroDeContas();
+                tela_cadastroDeContas(&lista);
                 break;
             case 2:
-                tela_MovimentacaoFinanceira();
+                tela_movimentacaoFinanceira();
                 break;
             case 3:
                 break;

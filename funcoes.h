@@ -43,9 +43,19 @@ typedef struct
     TipoApontador Ultimo;
 } Lista_ContaBancaria;
 
-
+void gotoxy(int x, int y);
 void tela();
-void tela_CadastroDeContas();
-void tela_MovimentacaoFinanceira();
+void tela_cadastroDeContas(Lista_ContaBancaria *lista_contaBancaria);
+void tela_movimentacaoFinanceira();
+void tela_digitacaoContas();
+void tela_contasCadastradas(conta_bancaria reg_conta, int proximaLinha);
+
+void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria);
+
+int contador(Lista_ContaBancaria *lista_contaBancaria);
+TipoApontador pesquisa(Lista_ContaBancaria *lista_contaBancaria, int codigo);
+
+void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc);
+void imprimir_listaDasContasBancarias(Lista_ContaBancaria *lista_contaBancaria);
 
 #endif

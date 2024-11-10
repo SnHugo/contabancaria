@@ -1,3 +1,8 @@
+/*
+Autor: Wesley Nobuyuki 
+Data: 20/10/2024
+Objetivo do trecho: Declaração da função main integrando o controle do usuário
+*/
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>

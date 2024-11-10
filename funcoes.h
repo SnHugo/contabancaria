@@ -1,3 +1,9 @@
+/*
+Autor: Hugo Cesar Fernandes de Macedo
+Data: 24/10/2024
+Objetivo do trecho: Criar as demais structs para criação de contas bancárias e movimentação
+*/
+
 #ifndef FUNCOES_H_INCLUDED
 #define FUNCOES_H_INCLUDED
 

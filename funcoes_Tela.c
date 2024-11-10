@@ -1,3 +1,8 @@
+/*
+Autor: Hugo Cesar Fernandes de Macedo
+Data: 27/10/2024
+Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
+*/
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>

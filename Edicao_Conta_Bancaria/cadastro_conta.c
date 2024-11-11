@@ -4,7 +4,7 @@ Data: 30/10/2024
 Objetivo do trecho: Implementar uma função para que o usuário cadastre contas no inicio, meio e fim da lista
 */
 
-#include "funcoes.h"
+#include "C:\Trabalho_ContaBancaria\funcoes.h"
 
 
 // Funcao para contar os elementos da lista

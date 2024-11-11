@@ -4,7 +4,7 @@ Data: 10/11/2024
 Objetivo do trecho: 
 */
 
-#include "funcoes.h"
+#include "C:\Trabalho_ContaBancaria\funcoes.h"
 
 TipoApontadorMovi ValidarNumeroSequencial(ListaMovimentacaoFinanceira *lista_movi_financeira, int sequecial)
 {

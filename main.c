@@ -1,8 +1,11 @@
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
+/*
+Autor: Wesley Nobuyuki 
+Data: 20/10/2024
+Objetivo do trecho: Declaração da função main integrando o controle do usuário
+*/
+
 #include "funcoes.h"
+
 
 void gotoxy(int x, int y)
 {
@@ -17,8 +20,9 @@ int main()
     int opcao;
 
     Lista_ContaBancaria lista;
+    ListaMovimentacaoFinanceira lista_movi_financeira;
 
-    iniciar_lista(&lista);
+    iniciar_lista(&lista, &lista_movi_financeira);
     
     do
     {
@@ -41,7 +45,7 @@ int main()
                 tela_cadastroDeContas(&lista);
                 break;
             case 2:
-                tela_movimentacaoFinanceira();
+                TelaMoviFinanceira(&lista_movi_financeira);
                 break;
             case 3:
                 break;

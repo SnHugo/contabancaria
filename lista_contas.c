@@ -1,11 +1,10 @@
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
 #include "funcoes.h"
 
-void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria)
+void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria, ListaMovimentacaoFinanceira *lista_movi_financeira)
 {
     lista_contaBancaria-> Primeiro = NULL;
     lista_contaBancaria-> Ultimo = NULL;
+
+    lista_movi_financeira-> Primeiro = NULL;
+    lista_movi_financeira-> Ultimo = NULL;
 }

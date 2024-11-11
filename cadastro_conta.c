@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
+/*
+Autor: Hugo Cesar Fernandes de Macedo
+Data: 30/10/2024
+Objetivo do trecho: Implementar uma função para que o usuário cadastre contas no inicio, meio e fim da lista
+*/
+
 #include "funcoes.h"
 
 

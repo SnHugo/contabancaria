@@ -94,7 +94,7 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
         // Ler o tipo da conta
         gotoxy(39, 15);
         fflush(stdin);
-        fgets(reg_conta.tipo_conta, 20, stdin);
+        strcpy(reg_conta.tipo_conta, selecionar_tipo_conta());
 
         // Ler o saldo
         gotoxy(39, 17);
@@ -109,7 +109,7 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
         // Definir o status da conta bancaria
         gotoxy(39, 21);
         fflush(stdin);
-        scanf(" %s", &reg_conta.status);
+        scanf(" %s", reg_conta.status);
 
         // Confirmação de gravação
         gotoxy(7, 23);

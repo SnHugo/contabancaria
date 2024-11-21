@@ -1,3 +1,8 @@
+/*
+Autor: Hugo Cesar Fernandes de Macedo
+Data: 21/11/2024
+Objetivo do trecho: Remoção das contas bancárias enquanto não há uma movimentação entre as mesmas.
+*/
 #include "funcoes.h"
 #include <stdio.h>
 #include <windows.h>

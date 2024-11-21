@@ -3,13 +3,9 @@ Autor: Hugo Cesar Fernandes de Macedo
 Data: 13/11/2024
 Objetivo do trecho: Função para que no fgets do tipo_conta, o usuário escolha qual o tipo de conta ele deseja selecionar.
 */
-#include "funcoes.h"
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
-const char* selecionar_tipo_conta() {
+char *selecionar_tipo_conta() {
     
     int opcao;
     

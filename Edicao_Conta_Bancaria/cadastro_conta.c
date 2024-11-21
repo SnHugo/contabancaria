@@ -1,19 +1,18 @@
 /*
-Autor: Hugo Cesar Fernandes de Macedo
-Data: 30/10/2024
-Objetivo do trecho: Implementar uma função para que o usuário cadastre contas no inicio, meio e fim da lista
+Aluno: Hugo Cesar Fernandes de Macedo
+Data: 17/11/2024
+Objetivo do trecho: Criar e cadastrar a conta bancária
 */
-
-#include "C:\Trabalho_ContaBancaria\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 
 // Funcao para contar os elementos da lista
-int contador(Lista_ContaBancaria *lista_contaBancaria)
+int contador(Lista_ContaBancaria *L)
 {
     TipoApontador aux;
     int cont = 0;
 
-    aux = lista_contaBancaria->Primeiro;
+    aux = L->Primeiro;
     while (aux != NULL)
     {
         cont++;
@@ -23,102 +22,97 @@ int contador(Lista_ContaBancaria *lista_contaBancaria)
 }
 
 // Funcao para pesquisa
-TipoApontador pesquisa(Lista_ContaBancaria *lista_contaBancaria, int codigo)
+TipoApontador pesquisa(Lista_ContaBancaria *L, int cd_conta)
 {
-    TipoApontador auxiliar = lista_contaBancaria->Primeiro;
-    if (auxiliar != NULL)
+    TipoApontador aux = L->Primeiro;
+
+    while (aux != NULL)
     {
-        while (auxiliar != NULL)
+        if (aux->conteudo.cd_conta == cd_conta)
         {
-            if (auxiliar->conteudo.cd_conta == codigo)
-            {
-                return auxiliar;
-            }
-            auxiliar = auxiliar->proximo;
+            return aux;
         }
+        aux = aux->proximo;
     }
     return NULL;
 }
 
-void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
+void cadastrar_conta(Lista_ContaBancaria *L, int opc)
 {
-    TipoApontador p, r, validar_codigo;
+    TipoApontador p, r;
     conta_bancaria reg_conta;
     int resp, resp2 = 1, num;
 
-    validar_codigo = (TipoApontador)malloc(sizeof(ContaBancaria));
-
     do
     {
+        system("cls");
+        tela();
+        // tela_CadastroDeContas();
+        tela_digitacaoContas();
         do
         {
-            tela();
-            tela_digitacaoContas();
-            
-            // Ler codigo da conta
-            gotoxy(27, 6);
-            fflush(stdin);
+            gotoxy(7, 23);
+            printf("                                                      ");
+            gotoxy(7, 23);
+            printf("Digite 0 para sair");
+            gotoxy(25, 6);
+            printf("                                 ");
+            gotoxy(39, 7);
             scanf("%d", &reg_conta.cd_conta);
+            getchar();
 
             if (reg_conta.cd_conta == 0)
             {
                 return;
             }
-            else if (reg_conta.cd_conta > 1000000 || reg_conta.cd_conta < 1)
-            {
-                gotoxy(8, 23);
-                printf("Digite um codigo entre os numeros 1.000.000 e 1!");
-                getch();
-                continue;
-            }
 
-            validar_codigo = pesquisa(lista_contaBancaria, reg_conta.cd_conta);
-            if (validar_codigo != NULL)
+            if (pesquisa(L, reg_conta.cd_conta) != NULL)
             {
-                gotoxy(8, 23);
-                printf("                                                                       ");
-                gotoxy(8, 23);
+                gotoxy(7, 23);
+                printf("                                       ");
+                gotoxy(7, 23);
                 printf("O codigo '%d' ja esta cadastrado!", reg_conta.cd_conta);
                 getch();
-                continue;
+                gotoxy(39, 7);
+                printf("                              ");
             }
 
-            // Ler o nome do banco
-            gotoxy(27, 8);
-            fflush(stdin);
-            fgets(reg_conta.banco, 50, stdin);
+        } while (pesquisa(L, reg_conta.cd_conta) != NULL);
 
-            // Ler a agencia
-            gotoxy(27, 10);
-            fflush(stdin);
-            fgets(reg_conta.agencia, 10, stdin);
+        // Ler o nome do banco
+        gotoxy(39, 9);
+        fflush(stdin);
+        fgets(reg_conta.banco, 50, stdin);
 
-            // Ler o numero da conta
-            gotoxy(27, 12);
-            fflush(stdin);
-            fgets(reg_conta.numero_conta, 20, stdin);
+        // Ler a agencia
+        gotoxy(39, 11);
+        fflush(stdin);
+        fgets(reg_conta.agencia, 10, stdin);
 
-            // Ler o tipo da conta
-            gotoxy(27, 14);
-            fflush(stdin);
-            fgets(reg_conta.tipo_conta, 20, stdin);
+        // Ler o numero da conta
+        gotoxy(39, 13);
+        fflush(stdin);
+        fgets(reg_conta.numero_conta, 20, stdin);
 
-            // Ler o saldo
-            gotoxy(27, 16);
-            fflush(stdin);
-            scanf("%lf", &reg_conta.vl_saldo);
+        // Ler o tipo da conta
+        gotoxy(39, 15);
+        fflush(stdin);
+        strcpy(reg_conta.tipo_conta, selecionar_tipo_conta());
 
-            // Ler o limite
-            gotoxy(27, 18);
-            fflush(stdin);
-            scanf("%lf", &reg_conta.vl_limite);
+        // Ler o saldo
+        gotoxy(39, 17);
+        fflush(stdin);
+        scanf("%lf", &reg_conta.vl_saldo);
 
-            // Definir o status da conta bancaria
-            gotoxy(27, 20);
-            fflush(stdin);
-            fgets(reg_conta.status, 10, stdin);
+        // Ler o limite
+        gotoxy(39, 19);
+        fflush(stdin);
+        scanf("%lf", &reg_conta.vl_limite);
 
-        } while (validar_codigo != NULL);
+        // Definir o status da conta bancaria
+        gotoxy(39, 21);
+        fflush(stdin);
+        scanf(" %s", reg_conta.status);
 
         // Confirmação de gravação
         gotoxy(7, 23);
@@ -132,35 +126,45 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
             p = (TipoApontador)malloc(sizeof(ContaBancaria));
             p->conteudo = reg_conta;
             p->proximo = NULL;
-
             if (p == NULL)
             {
                 gotoxy(07, 23);
                 printf("Erro na alocação da memória!");
                 return;
             }
-            // Adicionar no inicio
-            if (lista_contaBancaria-> Primeiro == NULL)
+            // Adicionar no final
+            if (opc == 2)
             {
-                lista_contaBancaria->Primeiro = p;
-                lista_contaBancaria->Ultimo = p;
-            }
-            else
-            {
-                if (opc == 1)
+                if (L->Primeiro == NULL)
                 {
-                    p->proximo = lista_contaBancaria->Primeiro;
-                    lista_contaBancaria->Primeiro = p;
+                    L->Primeiro = p;
+                    L->Ultimo = p;
                 }
-                // Adicionar no final
-                else if (opc == 2)
+                else
                 {
-                    lista_contaBancaria->Ultimo->proximo = p;
-                    lista_contaBancaria->Ultimo = p;
+                    L->Ultimo->proximo = p;
+                    L->Ultimo = p;
                     p->proximo = NULL;
                 }
-                // Adicionar na opcao desejada
-                else if (opc == 3)
+            }
+            // Adicionar no inicio
+            else if (opc == 1)
+            {
+                if (L->Primeiro == NULL)
+                {
+                    L->Primeiro = p;
+                    L->Ultimo = p;
+                }
+                else
+                {
+                    p->proximo = L->Primeiro;
+                    L->Primeiro = p;
+                }
+            }
+            // Adicionar na opcao desejada
+            else if (opc == 3)
+            {
+                if (L->Primeiro != NULL)
                 {
                     do
                     {
@@ -171,42 +175,41 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
                         scanf("%d", &num);
                         getchar();
 
-                        if (num < 1 || num > contador(lista_contaBancaria))
+                        if (num < 1 || num > contador(L))
                         {
                             gotoxy(7, 23);
                             printf("Digite uma posicao valida!         ");
                             getch();
                         }
-                    } while (num < 1 || num > contador(lista_contaBancaria));
+                    } while (num < 1 || num > contador(L));
+                }
+                if (num == 1)
+                {
+                    p->proximo = L->Primeiro;
+                    L->Primeiro = p;
 
-                    if (num == 1)
+                    if (L->Ultimo == NULL)
                     {
-                        p->proximo = lista_contaBancaria->Primeiro;
-                        lista_contaBancaria->Primeiro = p;
-
-                        if (lista_contaBancaria->Ultimo == NULL)
-                        {
-                            lista_contaBancaria->Ultimo = p;
-                        }
+                        L->Ultimo = p;
                     }
-                    else
+                }
+                else
+                {
+                    r = (TipoApontador)malloc(sizeof(Lista_ContaBancaria));
+                    if (r == NULL)
                     {
-                        r = (TipoApontador)malloc(sizeof(Lista_ContaBancaria));
-                        if (r == NULL)
-                        {
-                            gotoxy(07, 23);
-                            printf("Erro na alocação da memoria!");
-                            return;
-                        }
-                        r->conteudo = reg_conta;
-                        p = lista_contaBancaria->Primeiro;
-                        for (int x = 1; x < num - 1; x++)
-                        {
-                            p = p->proximo;
-                        }
-                        r->proximo = p->proximo;
-                        p->proximo = r;
+                        gotoxy(07, 23);
+                        printf("Erro na alocação da memoria!");
+                        return;
                     }
+                    r->conteudo = reg_conta;
+                    p = L->Primeiro;
+                    for (int x = 1; x < num - 1; x++)
+                    {
+                        p = p->proximo;
+                    }
+                    r->proximo = p->proximo;
+                    p->proximo = r;
                 }
             }
         }
@@ -237,24 +240,3 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
     } while (resp2 == 1);
 }
 
-void imprimir_listaDasContasBancarias(Lista_ContaBancaria *lista_contaBancaria)
-{
-    int linha = 10;
-    TipoApontador p = lista_contaBancaria-> Primeiro;
-
-    if (p != NULL)
-    {
-        while (p != NULL)
-        {
-            tela_contasCadastradas(p->conteudo, linha);
-            p = p->proximo;
-            linha++;
-        }
-    }
-    else
-    {
-        gotoxy(8, 23);
-        printf("Lista Vazia!");
-        getch();
-    }
-}

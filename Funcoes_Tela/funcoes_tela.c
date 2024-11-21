@@ -4,8 +4,7 @@ Data: 27/10/2024
 Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
 */
 
-#include "C:\Trabalho_ContaBancaria\funcoes.h"
-
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 // Montar a tela
 void tela()
@@ -43,7 +42,7 @@ void tela()
     printf("+-----------------------------------------------------------------------------+");
 }
 
-void tela_cadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
+void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
 {
     int opcao;
 
@@ -73,7 +72,7 @@ void tela_cadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
                 cadastrar_conta(lista_contaBancaria, opcao);
                 break;
             case 3:
-                imprimir_listaDasContasBancarias(lista_contaBancaria);
+                // imprimir_listaDasContasBancarias(lista_contaBancaria);
                 break;
             case 4:
                 break;
@@ -298,4 +297,19 @@ void ImprimirLinhaPorTamanho(int canto_esquerdo_x, int canto_direito_x, int linh
 
     gotoxy(canto_direito_x, linha);
     printf("%c", 180);
+}
+
+void ImprimirColunaPorTamanho( int coluna, int linha_superior, int linha_inferior)
+{
+    gotoxy(coluna, linha_superior);
+    printf("%c", 194);
+
+    for (int linha = linha_superior + 1; linha < linha_inferior; linha++)
+    {
+        gotoxy(coluna, linha);
+        printf("%c", 179);
+    }
+
+    gotoxy(coluna, linha_inferior);
+    printf("%c", 193);
 }

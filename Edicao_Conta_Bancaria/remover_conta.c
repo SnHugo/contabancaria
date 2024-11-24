@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
-=======
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 /*
 Autor: Hugo Cesar Fernandes de Macedo
 Data: 21/11/2024
@@ -12,7 +10,6 @@ Objetivo do trecho: Remoção das contas bancárias enquanto não há uma movime
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
->>>>>>> 9a8c209fb4caf609f1785e4d3cc36e623e3b6f4a
 
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
 {

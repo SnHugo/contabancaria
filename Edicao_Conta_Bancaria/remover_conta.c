@@ -1,14 +1,11 @@
-#include "funcoes.h"
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+
 
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
 {
-    TipoApontador p;
-    TipoApontador r;
-    conta_bancaria reg_conta;
+    TipoApontadorConta p;
+    TipoApontadorConta r;
+    ContaBancaria reg_conta;
     int resp;
     int num;
     int cont;

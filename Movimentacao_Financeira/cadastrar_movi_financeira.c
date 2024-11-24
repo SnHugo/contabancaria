@@ -4,7 +4,7 @@ Data: 10/11/2024
 Objetivo do trecho: Realizar o cadastro de uma movimentacao financeira
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 
 char *InverterData (char *dt_data)
@@ -25,7 +25,7 @@ char *InverterData (char *dt_data)
     return dt_data;
 }
 
-TipoApontador ValidarConta (Lista_ContaBancaria *lista_conta_bancaria)
+TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria)
 {
     int codigo;
 
@@ -43,7 +43,7 @@ TipoApontador ValidarConta (Lista_ContaBancaria *lista_conta_bancaria)
             return NULL;
         }
 
-        TipoApontador pont = pesquisa(lista_conta_bancaria, codigo);
+        TipoApontadorConta pont = pesquisa(lista_conta_bancaria, codigo);
 
         if (pont != NULL)
         {
@@ -163,7 +163,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
     gotoxy(17, 7);
     printf("%d", pont_movi-> conteudo_movi.sequencial);
 
-    TipoApontador conta = ValidarConta(lista_conta_bancaria);
+    TipoApontadorConta conta = ValidarConta(lista_conta_bancaria);
     
     if (conta != NULL)
     {     

@@ -1,3 +1,8 @@
+/*
+Autor: Hugo Cesar Fernandes de Macedo
+Data: 23/11/2024
+Objetivo do trecho: Imprimir registro das contas selecionadas
+*/
 #include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 void imprimir_Registro(ContaBancaria reg_conta)

@@ -5,14 +5,14 @@ Objetivo do trecho: Funcao para que o usuario altere campos dos dados da conta
 */
 #include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
-void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria)
+void alterar_dados(Lista_ContaBancaria *lista_contaBancaria)
 {
     int opcao_alterar;
     int opcao_denovo;
     int opcao_salvar;
-    ContaBancaria reg_conta;
+    ContaBancaria reg_conta; 
 
-    TipoApontadorConta resp = (TipoApontadorConta)malloc(sizeof(ContaBancaria));
+    TipoApontadorConta resp = (TipoApontadorConta)malloc(sizeof(TipoConta));
 
     do
     {
@@ -20,7 +20,7 @@ void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria)
         do
         {
             gotoxy(8, 23);
-            printf("Digite o codigo que deseja alterar:                        ");
+            printf("Digite o codigo que deseja alterar:            ");
             gotoxy(44, 23);
             fflush(stdin);
             scanf("%d", &reg_conta.cd_conta);
@@ -33,7 +33,7 @@ void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria)
                 printf("Erro: Codigo nao encontrado                      ");
                 getch();
                 gotoxy(8, 23);
-                printf("Deseja digitar novamente ? [1]Sim [2]Nao:        ");
+                printf("Deseja digitar novamente ? [1]Sim [2]Nao:");
                 gotoxy(54, 23);
                 fflush(stdin);
                 scanf("%d", &opcao_denovo);
@@ -50,8 +50,8 @@ void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria)
 
         do
         {
-            gotoxy(8, 23);
-            printf("Digite qual o numero que deseja alterar:");
+            gotoxy(7, 23);
+            printf("Digite qual o numero que deseja alterar: ");
             gotoxy(49, 23);
             fflush(stdin);
             scanf("%d", &opcao_alterar);
@@ -59,69 +59,77 @@ void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria)
             switch (opcao_alterar)
             {
             case 1:
-                gotoxy(27, 9);
-                printf("                                                 ");
-                gotoxy(27, 9);
+                gotoxy(29, 8);
+                printf("                                            ");
+                gotoxy(29, 8);
                 fflush(stdin);
                 fgets(reg_conta.banco, 50, stdin);
                 break;
             case 2:
-                gotoxy(27, 11);
-                printf("                                                 ");
-                gotoxy(27, 11);
+                gotoxy(29, 10);
+                printf("                                            ");
+                gotoxy(29, 10);
                 fflush(stdin);
                 fgets(reg_conta.agencia, 10, stdin);
                 break;
             case 3:
-                gotoxy(27, 13);
-                printf("                                                 ");
-                gotoxy(27, 13);
+                gotoxy(29, 12);
+                printf("                                            ");
+                gotoxy(29, 12);
                 fflush(stdin);
                 fgets(reg_conta.numero_conta, 20, stdin);
                 break;
             case 4:
-                gotoxy(27, 15);
-                printf("                                                 ");
-                gotoxy(27, 15);
+                gotoxy(29, 14);
+                printf("                                             ");
+                gotoxy(29, 14);
                 fflush(stdin);
                 strcpy(reg_conta.tipo_conta, selecionar_tipo_conta());
                 break;
             case 5:
                 gotoxy(07, 23);
-                printf("                                                     ");
+                printf("                                                                  ");
                 gotoxy(07, 23);
-                printf("O campo 'Saldo' não pode ser alterado");
+                printf("O campo 'Saldo' nao pode ser alterado");
+                getch();
                 break;
             case 6:
                 gotoxy(07, 23);
-                printf("                                                     ");
+                printf("                                                                  ");
                 gotoxy(07, 23);
-                printf("O campo 'Limite' não pode ser alterado");
+                printf("O campo 'Limite' nao pode ser alterado");
+                getch();
                 break;
             case 7:
                 gotoxy(07, 23);
-                printf("                                                     ");
+                printf("                                                                  ");
                 gotoxy(07, 23);
-                printf("O campo 'Status' não pode ser alterado");
+                printf("O campo 'Status' nao pode ser alterado");
+                getch();
+                break;
             case 0:
                 break;
             default:
                 gotoxy(07, 23);
-                printf("                                                                ");
+                printf("                                                                       ");
                 gotoxy(07, 23);
                 printf("Opcao invalida.");
                 getch();
             }
-            gotoxy(8, 23);
-            printf("Deseja alterar outro dado ? [1]Sim [2]Nao:   ");
+            gotoxy(07, 23);
+            printf("                                                                        ");
+            gotoxy(07, 23);
+            printf("Deseja alterar outro dado ? [1]Sim [2]Nao: ");
             gotoxy(61, 23);
             fflush(stdin);
             scanf("%d", &opcao_alterar);
 
         } while (opcao_alterar != 0 && opcao_alterar != 2);
 
-        gotoxy(8, 23);
-        printf("Deseja salvar os dados alterados ? [1]Sim [2]Nao:   ");
+        gotoxy(07, 23);
+        printf("                                                                        ");
+        gotoxy(07, 23);
+        printf("Deseja salvar os dados alterados ? [1]Sim [2]Nao: ");
         gotoxy(62, 23);
         fflush(stdin);
         scanf("%d", &opcao_salvar);

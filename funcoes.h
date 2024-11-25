@@ -41,7 +41,7 @@ typedef struct
 // Ponteiro
 typedef struct TipoConta *TipoApontadorConta;
 
-// Estrutura para armazenar o conteudo
+// Estrutura para armazenar o conteúdo
 typedef struct TipoConta
 {
     ContaBancaria conteudo;
@@ -57,6 +57,7 @@ typedef struct
 
 typedef struct TipoMovimentacao *TipoApontadorMovi;
 
+// Estrutura para armazenar a movimentação
 typedef struct TipoMovimentacao
 {
     MovimentacaoFinanceira conteudo_movi;
@@ -70,8 +71,6 @@ typedef struct
     TipoApontadorMovi Ultimo;
 }ListaMovimentacaoFinanceira;
 
-// Pasta telas
-
 // Funcao que posiciona o cursor na tela
 void gotoxy(int x, int y);
 
@@ -81,6 +80,7 @@ void tela();
 // Telas de Cadastro de Contas
 void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria);
 void tela_digitacaoContas();
+void tela_listagem();
 
 // Telas de Movimentacao Financeira
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
@@ -94,7 +94,6 @@ void CriarSubTela(int canto_superiorEsq_x, int canto_superiorEsq_y, int canto_in
 void ImprimirLinhaPorTamanho(int canto_esquerdo_x, int canto_direito_x, int linha);
 void ImprimirColunaPorTamanho( int coluna, int linha_superior, int linha_inferior);
 
-
 // Funcoes para iniciar as listas
 void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria, ListaMovimentacaoFinanceira *lista_movi_financeira);
 
@@ -104,8 +103,12 @@ TipoApontadorConta pesquisa(Lista_ContaBancaria *lista_contaBancaria, int codigo
 char *selecionar_tipo_conta();
 void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc);
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc);
-void alterar_funcionario(Lista_ContaBancaria *lista_contaBancaria);
+void alterar_dados(Lista_ContaBancaria *lista_contaBancaria);
 void imprimir_Registro(ContaBancaria reg_conta);
+void consultar_contas(Lista_ContaBancaria *lista_contaBancaria);
+void exibir_contas_geral(Lista_ContaBancaria *lista_contaBancaria);
+void consultar_ordem_alfabetica(Lista_ContaBancaria *lista_contaBancaria);
+void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria);
 
 // Funcoes Movimentacao Financeira
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
@@ -113,6 +116,5 @@ TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria);
 char *ValidarTipoMovi();
 double ValidarValorMovi (char *tipo_movi);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
-
 
 #endif

@@ -47,17 +47,16 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
     {
         system("cls");
         tela();
-        // tela_CadastroDeContas();
         tela_digitacaoContas();
         do
         {
             gotoxy(7, 23);
-            printf("                                                      ");
+            printf("                                                                          ");
             gotoxy(7, 23);
             printf("Digite 0 para sair");
             gotoxy(25, 6);
             printf("                                 ");
-            gotoxy(39, 7);
+            gotoxy(30, 6);
             scanf("%d", &reg_conta.cd_conta);
             getchar();
 
@@ -69,7 +68,7 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
             if (pesquisa(lista_contaBancaria, reg_conta.cd_conta) != NULL)
             {
                 gotoxy(7, 23);
-                printf("                                       ");
+                printf("                                                                         ");
                 gotoxy(7, 23);
                 printf("O codigo '%d' ja esta cadastrado!", reg_conta.cd_conta);
                 getch();
@@ -80,41 +79,44 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
         } while (pesquisa(lista_contaBancaria, reg_conta.cd_conta) != NULL);
 
         // Ler o nome do banco
-        gotoxy(39, 9);
+        gotoxy(30, 8);
         fflush(stdin);
         fgets(reg_conta.banco, 50, stdin);
 
         // Ler a agencia
-        gotoxy(39, 11);
+        gotoxy(30, 10);
         fflush(stdin);
         fgets(reg_conta.agencia, 10, stdin);
 
         // Ler o numero da conta
-        gotoxy(39, 13);
+        gotoxy(30, 12);
         fflush(stdin);
         fgets(reg_conta.numero_conta, 20, stdin);
 
         // Ler o tipo da conta
-        gotoxy(39, 15);
+        gotoxy(30, 14);
         fflush(stdin);
         strcpy(reg_conta.tipo_conta, selecionar_tipo_conta());
 
         // Ler o saldo
-        gotoxy(39, 17);
+        gotoxy(30, 16);
         fflush(stdin);
         scanf("%lf", &reg_conta.vl_saldo);
 
         // Ler o limite
-        gotoxy(39, 19);
+        gotoxy(30, 18);
         fflush(stdin);
         scanf("%lf", &reg_conta.vl_limite);
 
         // Definir o status da conta bancaria
-        gotoxy(39, 21);
+        gotoxy(30, 20);
         fflush(stdin);
         scanf(" %s", reg_conta.status);
 
         // Confirmação de gravação
+        
+        gotoxy(7, 23);
+        printf("                                                                          ");
         gotoxy(7, 23);
         printf("Deseja gravar no sistema?: [1] Sim [2] Nao: ");
         fflush(stdin);
@@ -123,13 +125,13 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
 
         if (resp == 1)
         {
-            p = (TipoApontadorConta)malloc(sizeof(ContaBancaria));
+            p = (TipoApontadorConta)malloc(sizeof(TipoConta));
             p->conteudo = reg_conta;
             p->proximo = NULL;
             if (p == NULL)
             {
                 gotoxy(07, 23);
-                printf("Erro na alocação da memória!");
+                printf("Erro na alocação da memória!                                ");
                 return;
             }
             // Adicionar no final
@@ -169,16 +171,18 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
                     do
                     {
                         gotoxy(7, 23);
-                        printf("                                                    ");
+                        printf("                                                                       ");
                         gotoxy(7, 23);
-                        printf("Digite a posicao para inserir: ");
+                        printf("Digite a posicao para inserir:                      ");
                         scanf("%d", &num);
                         getchar();
 
                         if (num < 1 || num > contador(lista_contaBancaria))
                         {
+                            gotoxy(07, 23);
+                            printf("                                                                       ");
                             gotoxy(7, 23);
-                            printf("Digite uma posicao valida!         ");
+                            printf("Digite uma posicao valida!");
                             getch();
                         }
                     } while (num < 1 || num > contador(lista_contaBancaria));
@@ -195,11 +199,11 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
                 }
                 else
                 {
-                    r = (TipoApontadorConta)malloc(sizeof(Lista_ContaBancaria));
+                    r = (TipoApontadorConta)malloc(sizeof(TipoConta));
                     if (r == NULL)
                     {
                         gotoxy(07, 23);
-                        printf("Erro na alocação da memoria!");
+                        printf("Erro na alocação da memoria!                                   ");
                         return;
                     }
                     r->conteudo = reg_conta;
@@ -216,13 +220,13 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
         else if (resp != 2)
         {
             gotoxy(7, 23);
-            printf("                                           ");
+            printf("                                                                       ");
             gotoxy(7, 23);
             printf("Opcao invalida!");
         }
 
         gotoxy(7, 23);
-        printf("                                                    ");
+        printf("                                                                       ");
         gotoxy(7, 23);
         printf("Deseja cadastrar outro? [1] Sim [2] Nao: ");
         scanf("%d", &resp2);
@@ -231,7 +235,7 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
         if (resp2 != 1 && resp2 != 2)
         {
             gotoxy(7, 23);
-            printf("                                             ");
+            printf("                                                                       ");
             gotoxy(7, 23);
             printf("Opcao invalida!");
             getch();

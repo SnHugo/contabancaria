@@ -13,21 +13,25 @@ char *selecionar_tipo_conta() {
         gotoxy(07, 23);
         printf("Digite 1 para Poupanca, 2 para Corrente, 3 para Cartao de Credito: ");
         fflush(stdin);
+        gotoxy(73, 23);
         scanf("%d", &opcao);
 
         switch (opcao) {
             case 1:
+                gotoxy(29, 14);
                 printf("Poupanca");
                 return "Poupanca";
             case 2:
+                gotoxy(29, 14);
                 printf("Corrente");
                 return "Corrente";
             case 3:
+                gotoxy(29, 14);
                 printf("Cartao de Credito");
                 return "Cartao de Credito";
             default:
                 gotoxy(07, 23);
-                printf("                                                                        ");
+                printf("                                                                         ");
                 gotoxy(07, 23);
                 printf("Opcao invalida. Tente novamente.");
         }

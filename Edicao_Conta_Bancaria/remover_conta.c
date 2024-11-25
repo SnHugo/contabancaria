@@ -1,16 +1,19 @@
+
 /*
 Autor: Hugo Cesar Fernandes de Macedo
 Data: 21/11/2024
 Objetivo do trecho: Remoção das contas bancárias enquanto não há uma movimentação entre as mesmas.
 */
+
+//#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 #include "C:\Trabalho_ControleBancario\funcoes.h"
 
 
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
 {
-    TipoApontador p;
-    TipoApontador r;
-    conta_bancaria reg_conta;
+    TipoApontadorConta p;
+    TipoApontadorConta r;
+    ContaBancaria reg_conta;
     int resp;
     int num;
     int cont;

@@ -10,6 +10,7 @@ Objetivo do trecho: Implementando as funções tela para cada funcionalidade do 
 void tela()
 {
     int t;
+    system("color 02");
     system("cls");
     gotoxy(01, 01);
     printf("+-----------------------------------------------------------------------------+");
@@ -45,21 +46,31 @@ void tela()
 void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
 {
     int opcao;
-
+    int tipo_consulta;
     do
     {
         tela();
         gotoxy(25, 9);
-        printf("1. Incluir conta.");
+        printf("1. Cadastrar conta no inicio");
+        gotoxy(25, 10);
+        printf("2. Cadastrar conta no final");
         gotoxy(25, 11);
-        printf("2. Alterar Conta.");
+        printf("3. Cadastrar conta na posicao");
+        gotoxy(25, 12);
+        printf("4. Remover conta no incio");
         gotoxy(25, 13);
-        printf("3. Consulta Conta.");
+        printf("5. Remover conta no final");
+        gotoxy(25, 14);
+        printf("6. Remover na posicao");
         gotoxy(25, 15);
-        printf("4. Remover Conta");
+        printf("7. Alterar dados da conta");
+        gotoxy(25, 16);
+        printf("8. Consultar contas");
         gotoxy(25, 17);
-        printf("5. Voltar ao Menu Principal");
-        gotoxy(8, 23);
+        printf("9. Voltar ao menu principal");
+
+        
+        gotoxy(07, 23);
         fflush(stdin);
         scanf("%d", &opcao);
 
@@ -72,11 +83,24 @@ void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
                 cadastrar_conta(lista_contaBancaria, opcao);
                 break;
             case 3:
-                // imprimir_listaDasContasBancarias(lista_contaBancaria);
+                cadastrar_conta(lista_contaBancaria, opcao);
                 break;
             case 4:
+                remover_conta(lista_contaBancaria, opcao);
                 break;
             case 5:
+                remover_conta(lista_contaBancaria, opcao);
+                break;
+            case 6:
+                remover_conta(lista_contaBancaria, opcao);
+                break;
+            case 7:
+                alterar_dados(lista_contaBancaria);
+                break;
+            case 8:
+                consultar_contas(lista_contaBancaria);
+                break;
+            case 9:
                 break;
             default:
                 gotoxy(8, 23);
@@ -85,33 +109,45 @@ void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)
                 printf("Opcao Invalida!!!");
                 getch();
         }
-    }while (opcao != 5);
+    }while (opcao != 9);
 }
-
+void tela_listagem()
+{
+    tela();
+    gotoxy(07, 23);
+    printf("Digite 0 para sair");
+    gotoxy(25, 9);
+    printf("1. Consulta geral");
+    gotoxy(25, 11);
+    printf("2. Consulta ordem alfabetica");
+    gotoxy(25, 13);
+    printf("3. Consulta por codigo");
+    gotoxy(25, 15);
+    printf("4. Voltar para o menu de contas");  
+}
 
 void tela_digitacaoContas()
 {
     tela();
-    gotoxy(8, 23);
+    gotoxy(07, 23);
     printf("Digite 0 para sair");
     gotoxy(10, 6);
-    printf("Codigo.........:");
+    printf("Codigo............:");
     gotoxy(10, 8);
-    printf("1-Banco........:");
+    printf("[1] Banco.........:");
     gotoxy(10, 10);
-    printf("2-Agencia......:");
+    printf("[2] Agencia.......:");
     gotoxy(10, 12);
-    printf("3-Numero Conta.:");
+    printf("[3] Numero Conta..:");
     gotoxy(10, 14);
-    printf("4-Tipo da Conta:");
+    printf("[4] Tipo da Conta.:");
     gotoxy(10, 16);
-    printf("5-Saldo........:");
+    printf("[5] Saldo.........:");
     gotoxy(10, 18);
-    printf("6-Limite.......:");
+    printf("[6] Limite........:");
     gotoxy(10, 20);
-    printf("7-Status.......:");
+    printf("[7] Status........:");
 }
-
 
 void ExibirCampoEDigitacaoContornado(int x, int y, char campo[100], int espaco_digitavel)
 {

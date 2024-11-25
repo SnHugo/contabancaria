@@ -1,5 +1,5 @@
 /*
-Autor: Hugo Cesar Fernandes de Macedo
+Autor: Hugo Cesar Fernandes de Macedo || Wesley Nobuyuki Waterkemper
 Data: 24/10/2024
 Objetivo do trecho: Criar as demais structs para criação de contas bancárias e movimentação
 */
@@ -13,7 +13,6 @@ Objetivo do trecho: Criar as demais structs para criação de contas bancárias 
 #include <conio.h>
 #include <string.h>
 
-
 // Estrutura typedef
 typedef struct
 {
@@ -25,7 +24,7 @@ typedef struct
     double vl_saldo;
     double vl_limite;
     char status[10];
-} conta_bancaria;
+} ContaBancaria;
 
 // Movimentacao bancaria
 typedef struct
@@ -39,26 +38,26 @@ typedef struct
     double vl_saldo;
 } MovimentacaoFinanceira;
 
-
 // Ponteiro
-typedef struct ContaBancaria *TipoApontador;
+typedef struct TipoConta *TipoApontadorConta;
 
-// Estrutura para armazenar o conteudo
-typedef struct ContaBancaria
+// Estrutura para armazenar o conteúdo
+typedef struct TipoConta
 {
-    conta_bancaria conteudo;
-    TipoApontador proximo;
-} ContaBancaria;
+    ContaBancaria conteudo;
+    TipoApontadorConta proximo;
+} TipoConta;
 
 // Estrutura para aterrar o ponteiro
 typedef struct
 {
-    TipoApontador Primeiro;
-    TipoApontador Ultimo;
+    TipoApontadorConta Primeiro;
+    TipoApontadorConta Ultimo;
 } Lista_ContaBancaria;
 
 typedef struct TipoMovimentacao *TipoApontadorMovi;
 
+// Estrutura para armazenar a movimentação
 typedef struct TipoMovimentacao
 {
     MovimentacaoFinanceira conteudo_movi;
@@ -72,8 +71,6 @@ typedef struct
     TipoApontadorMovi Ultimo;
 }ListaMovimentacaoFinanceira;
 
-// Pasta telas
-
 // Funcao que posiciona o cursor na tela
 void gotoxy(int x, int y);
 
@@ -83,7 +80,7 @@ void tela();
 // Telas de Cadastro de Contas
 void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria);
 void tela_digitacaoContas();
-void tela_contasCadastradas(conta_bancaria reg_conta, int proximaLinha);
+void tela_listagem();
 
 
 
@@ -104,8 +101,6 @@ void LimparMensagem();
 void LimparPosicaoNaTela(int canto_supEsq_x, int canto_supEsq_y, int canto_infDir_x, int canto_infDir_y);
 
 
-
-
 // Funcoes para iniciar as listas
 void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria, ListaMovimentacaoFinanceira *lista_movi_financeira);
 
@@ -113,20 +108,28 @@ void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria, ListaMovimentacaoFi
 
 // Funcoes cadastro
 int contador(Lista_ContaBancaria *lista_contaBancaria);
-TipoApontador pesquisa(Lista_ContaBancaria *lista_contaBancaria, int codigo);
+TipoApontadorConta pesquisa(Lista_ContaBancaria *lista_contaBancaria, int codigo);
 char *selecionar_tipo_conta();
 void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc);
+void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc);
+void alterar_dados(Lista_ContaBancaria *lista_contaBancaria);
+void imprimir_Registro(ContaBancaria reg_conta);
+void consultar_contas(Lista_ContaBancaria *lista_contaBancaria);
+void exibir_contas_geral(Lista_ContaBancaria *lista_contaBancaria);
+void consultar_ordem_alfabetica(Lista_ContaBancaria *lista_contaBancaria);
+void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria);
 
 
 // Funcoes Movimentacao Financeira
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
-TipoApontador ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
+TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
 char *ValidarTipoMovi ();
 double ValidarValorMovi (char *tipo_movi);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
 char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo);
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
-ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(TipoApontador reg_conta, ListaMovimentacaoFinanceira *lista_movi);
+ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(TipoApontadorConta reg_conta, ListaMovimentacaoFinanceira *lista_movi);
 void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi);
+char *InverterData (char *dt_data);
 
 #endif

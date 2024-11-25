@@ -7,7 +7,7 @@ Objetivo do trecho: Realizar o cadastro de uma movimentacao financeira
 #include "C:\Trabalho_ControleBancario\funcoes.h"
 
 
-TipoApontador ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y)
+TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y)
 {
     int codigo;
 
@@ -24,7 +24,7 @@ TipoApontador ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, in
             return NULL;
         }
 
-        TipoApontador pont = pesquisa(lista_conta_bancaria, codigo);
+        TipoApontadorConta pont = pesquisa(lista_conta_bancaria, codigo);
 
         if (pont != NULL)
         {
@@ -142,7 +142,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
     gotoxy(17, 7);
     printf("%d", reg_movi.sequencial);
 
-    TipoApontador conta = ValidarConta(lista_conta_bancaria, 40, 7);
+    TipoApontadorConta conta = ValidarConta(lista_conta_bancaria, 40, 7);
     
     if (conta != NULL)
     {     

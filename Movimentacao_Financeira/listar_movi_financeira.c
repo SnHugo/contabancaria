@@ -1,6 +1,7 @@
 #include "C:\Trabalho_ControleBancario\funcoes.h"
 
 
+
 // ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(TipoApontador reg_conta, ListaMovimentacaoFinanceira *lista_movi)
 // {
 //     TipoApontadorMovi aux_movi = lista_movi-> Primeiro;
@@ -42,7 +43,7 @@
 
 void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi)
 {
-    TipoApontador conta_selecionada;
+    TipoApontadorConta conta_selecionada;
     TipoApontadorMovi reg_movi;
     ListaMovimentacaoFinanceira *lista_movi_da_conta;
     int linha = 9;

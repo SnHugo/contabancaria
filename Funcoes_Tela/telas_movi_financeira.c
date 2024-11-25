@@ -9,6 +9,7 @@ Objetivo do trecho: Telas onde são trabalhadas as Movimentacoes Financeiras
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria)
 {
     int opcao;
+    int linha;
 
     do
     {
@@ -33,6 +34,7 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
             case 2:
                 break;
             case 3:
+                ListarMovi(lista_conta_bancaria, lista_movi_financeira);
                 break;
             case 4:
                 break;
@@ -78,35 +80,23 @@ void TelaCadastroMovimentacao()
     printf("Novo saldo........:");
 }
 
-void TelaExibirMovimentacoes()
+void TelaExibirContaDasMovimentacoes()
 {
     tela();
     gotoxy(18, 3);
     printf("    Consulta da Movimentacao Financeira    ");
-    gotoxy(2, 5);
-    printf("Codigo:");
-    // gotoxy(10, 5);
-    // printf("%d", 10);
-    // gotoxy(13, 5);
-    // printf("Banco do Brazil");
-    gotoxy(33, 5);
-    printf("Agenc:");
-    // gotoxy(40, 5);
-    // printf("1234-5");
-    gotoxy(47, 5);
-    printf("Cta:");
-    // gotoxy(52, 5);
-    // printf("123456-1");
-    gotoxy(61, 5);
-    printf("Tp:");
-    // gotoxy(65, 5);
-    // printf("Cartao Credito");
 
     ImprimirLinhaPorTamanho(1, 79, 6);
     ImprimirColunaPorTamanho(12, 4, 6);
     ImprimirColunaPorTamanho(32, 4, 6);
     ImprimirColunaPorTamanho(46, 4, 6);
     ImprimirColunaPorTamanho(60, 4, 6);
+
+    ImprimirLinhaPorTamanho(2, 14, 8);
+    ImprimirLinhaPorTamanho(15, 36, 8);
+    ImprimirLinhaPorTamanho(37, 52, 8);
+    ImprimirLinhaPorTamanho(53, 65, 8);
+    ImprimirLinhaPorTamanho(66, 78, 8);
 
     gotoxy(3, 7);
     printf("Data Movi.");
@@ -118,10 +108,22 @@ void TelaExibirMovimentacoes()
     printf("Valor Movi.");
     gotoxy(67, 7);
     printf("Valor Saldo");
+}
 
-    ImprimirLinhaPorTamanho(2, 14, 8);
-    ImprimirLinhaPorTamanho(15, 36, 8);
-    ImprimirLinhaPorTamanho(37, 52, 8);
-    ImprimirLinhaPorTamanho(53, 65, 8);
-    ImprimirLinhaPorTamanho(66, 78, 8);
+void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha)
+{
+    gotoxy(3, linha);
+    printf("%s", reg_movi-> conteudo_movi.dt_movimento);
+    gotoxy(16, linha);
+    printf("%s", reg_movi-> conteudo_movi.favorecido);
+    gotoxy(38, linha);
+    printf("%s", reg_movi-> conteudo_movi.tp_movimentacao);
+    gotoxy(54, linha);
+    printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_movimento);
+    gotoxy(67, linha);
+    printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_saldo);
+    if (linha == 21)
+    {
+        LimparPosicaoNaTela(3, 8, 77, 21);
+    }
 }

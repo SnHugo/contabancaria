@@ -3,11 +3,8 @@ Autor: Hugo Cesar Fernandes de Macedo
 Data: 21/11/2024
 Objetivo do trecho: Remoção das contas bancárias enquanto não há uma movimentação entre as mesmas.
 */
-#include "funcoes.h"
-#include <stdio.h>
-#include <windows.h>
-#include <stdlib.h>
-#include <conio.h>
+#include "C:\Trabalho_ControleBancario\funcoes.h"
+
 
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
 {
@@ -22,7 +19,6 @@ void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
     {
         do
         {
-            system("cls");
             tela();
             do
             {
@@ -111,5 +107,5 @@ void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
             } while (resp != 0 && resp != 1);
 
         } while (resp != 0 && resp != 1);
-    }while (movimentacao_financeira() == 0);
+    }while (/*movimentacao_financeira()*/1 == 0);
 }

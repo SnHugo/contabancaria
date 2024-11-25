@@ -112,52 +112,6 @@ void tela_digitacaoContas()
     printf("7-Status.......:");
 }
 
-void tela_contasCadastradas(conta_bancaria reg_conta, int proximaLinha)
-{
-    tela();
-    gotoxy(3, 6);
-    printf("+");
-    gotoxy(77, 6);
-    printf("+");
-    gotoxy(3, 20);
-    printf("+");
-    gotoxy(77, 20);
-    printf("+");
-
-    for (int coluna = 4; coluna <= 76; coluna++)
-    {
-        gotoxy(coluna, 6);
-        printf("-");
-        gotoxy(coluna, 20);
-        printf("-");
-    }
-
-    for (int linha = 7; linha <= 19; linha++)
-    {
-        gotoxy(3, linha);
-        printf("|");
-        gotoxy(77, linha);
-        printf("|");
-    }
-
-    gotoxy(5, 7);
-    printf("Codigo: %d", reg_conta.cd_conta);
-    gotoxy(5, 9);
-    printf("Banco.: %s", reg_conta.banco);
-    gotoxy(64, 9);
-    printf("Agencia: %s", reg_conta.agencia);
-    gotoxy(5, 11);
-    printf("N. da Conta: %s", reg_conta.numero_conta);
-    gotoxy(39, 11);
-    printf("Tipo Conta: %s", reg_conta.tipo_conta);
-    gotoxy(5, 13);
-    printf("Saldo Atual: %lf", reg_conta.vl_saldo);
-    gotoxy(38, 13);
-    printf("Limite: %lf", reg_conta.vl_limite);
-    gotoxy(60, 13);
-    printf("Status: %s", reg_conta.status);
-    getch();
-}
 
 void ExibirCampoEDigitacaoContornado(int x, int y, char campo[100], int espaco_digitavel)
 {
@@ -312,4 +266,22 @@ void ImprimirColunaPorTamanho( int coluna, int linha_superior, int linha_inferio
 
     gotoxy(coluna, linha_inferior);
     printf("%c", 193);
+}
+
+void LimparMensagem()
+{
+    gotoxy(8, 23);
+    printf("                                                                      ");
+}
+
+void LimparPosicaoNaTela(int canto_supEsq_x, int canto_supEsq_y, int canto_infDir_x, int canto_infDir_y)
+{
+    for (int linha = canto_supEsq_y; linha <= canto_infDir_y; linha++)
+    {
+        for (int coluna = canto_supEsq_x; coluna <= canto_infDir_x; coluna++)
+        {
+            gotoxy(coluna, linha);
+            printf(" ");
+        }
+    }
 }

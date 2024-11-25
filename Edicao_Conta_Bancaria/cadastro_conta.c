@@ -47,7 +47,6 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
     {
         system("cls");
         tela();
-        // tela_CadastroDeContas();
         tela_digitacaoContas();
         do
         {
@@ -57,7 +56,7 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
             printf("Digite 0 para sair");
             gotoxy(25, 6);
             printf("                                 ");
-            gotoxy(39, 7);
+            gotoxy(30, 7);
             scanf("%d", &reg_conta.cd_conta);
             getchar();
 
@@ -80,37 +79,37 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
         } while (pesquisa(L, reg_conta.cd_conta) != NULL);
 
         // Ler o nome do banco
-        gotoxy(39, 9);
+        gotoxy(30, 8);
         fflush(stdin);
         fgets(reg_conta.banco, 50, stdin);
 
         // Ler a agencia
-        gotoxy(39, 11);
+        gotoxy(30, 10);
         fflush(stdin);
         fgets(reg_conta.agencia, 10, stdin);
 
         // Ler o numero da conta
-        gotoxy(39, 13);
+        gotoxy(30, 12);
         fflush(stdin);
         fgets(reg_conta.numero_conta, 20, stdin);
 
         // Ler o tipo da conta
-        gotoxy(39, 15);
+        gotoxy(30, 14);
         fflush(stdin);
         strcpy(reg_conta.tipo_conta, selecionar_tipo_conta());
 
         // Ler o saldo
-        gotoxy(39, 17);
+        gotoxy(30, 16);
         fflush(stdin);
         scanf("%lf", &reg_conta.vl_saldo);
 
         // Ler o limite
-        gotoxy(39, 19);
+        gotoxy(30, 18);
         fflush(stdin);
         scanf("%lf", &reg_conta.vl_limite);
 
         // Definir o status da conta bancaria
-        gotoxy(39, 21);
+        gotoxy(30, 20);
         fflush(stdin);
         scanf(" %s", reg_conta.status);
 
@@ -239,4 +238,3 @@ void cadastrar_conta(Lista_ContaBancaria *L, int opc)
 
     } while (resp2 == 1);
 }
-

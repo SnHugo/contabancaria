@@ -5,8 +5,7 @@ Objetivo do trecho: Listar as movimentações financeiras
 */
 
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
-
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi)
 {
     TipoApontadorMovi pont = lista_movi-> Primeiro;
@@ -35,6 +34,7 @@ ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMoviment
             if (codigo_conta == aux_movi-> conteudo_movi.cd_conta)
             {
                 TipoApontadorMovi novo_movi = (TipoApontadorMovi)malloc(sizeof(TipoMovimentacao));
+                
                 novo_movi-> conteudo_movi = aux_movi-> conteudo_movi;
                 if (lista_movi_da_conta-> Primeiro == NULL)
                 {
@@ -140,8 +140,20 @@ void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *l
     fflush(stdin);
     scanf("%d", &resp_consulta);
 
-    if (resp_consulta == 1)
+    switch (resp_consulta)
     {
-        ListarMovi(lista_conta, lista_movi);
+        case 1:
+            if (resp_consulta == 1)
+            {
+                ListarMovi(lista_conta, lista_movi);
+            }
+        case 2:
+            break;
+        default:
+            LimparMensagem();
+            gotoxy(8, 23);
+            printf("Digite uma opcao Valida!!!");
+            getch();
+            break;
     }
 }

@@ -19,10 +19,8 @@ int main()
     
     int opcao;
 
-    Lista_ContaBancaria lista;
-    ListaMovimentacaoFinanceira lista_movi_financeira;
-
-    iniciar_lista(&lista, &lista_movi_financeira);
+    Lista_ContaBancaria lista_conta = carregar_contas();
+    ListaMovimentacaoFinanceira lista_movi_financeira = carregar_movim();
 
     do
     {
@@ -42,14 +40,16 @@ int main()
         switch (opcao)
         {
         case 1:
-            tela_CadastroDeContas(&lista);
+            tela_CadastroDeContas(&lista_conta);
             break;
         case 2:
-            TelaMoviFinanceira(&lista_movi_financeira, &lista);
+            TelaMoviFinanceira(&lista_movi_financeira, &lista_conta);
             break;
         case 3:
             exit;
         default:
+            salvar_contas(&lista_conta);
+            salvar_movi(&lista_movi_financeira);
             gotoxy(07, 23);
             printf("                                                                     ");
             gotoxy(07, 23);

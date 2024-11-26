@@ -3,8 +3,45 @@ Autor: Hugo Cesar Fernandes de Macedo
 Data: 27/10/2024
 Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
 */
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
+
+
+void imprimir_Linha (int linha)
+{
+    int coluna;
+
+    if (linha == 1)
+    {
+        gotoxy(01, linha);
+        printf("%c", 218);
+
+        gotoxy(79, linha);
+        printf("%c", 191);
+    }
+    else if (linha == 24)
+    {
+        gotoxy(01, linha);
+        printf("%c", 192);
+
+        gotoxy(79, linha);
+        printf("%c", 217);
+    }
+    else
+    {
+        gotoxy(01, linha);
+        printf("%c", 195);
+
+        gotoxy(79, linha);
+        printf("%c", 180);
+    }
+
+    for (coluna = 2; coluna <= 78; coluna++)
+    {
+        gotoxy(coluna, linha);
+        printf("%c", 196);
+    }
+}
 
 // Montar a tela
 void tela()
@@ -12,8 +49,7 @@ void tela()
     int t;
     system("color 02");
     system("cls");
-    gotoxy(01, 01);
-    printf("+-----------------------------------------------------------------------------+");
+    imprimir_Linha(01);
     gotoxy(01, 02);
     printf("| UNICV");
     gotoxy(60, 02);
@@ -26,21 +62,18 @@ void tela()
     printf("Alocamento de Contas Bancarias");
     gotoxy(79, 03);
     printf("|");
-    gotoxy(01, 04);
-    printf("+-----------------------------------------------------------------------------+");
+    imprimir_Linha(04);
     for (t = 5; t < 24; t++)
     {
         gotoxy(01, t);
-        printf("|");
+        printf("%c", 179);
         gotoxy(79, t);
-        printf("|");
+        printf("%c", 179);
     }
-    gotoxy(01, 22);
-    printf("+-----------------------------------------------------------------------------+");
+    imprimir_Linha(22);
     gotoxy(02, 23);
     printf("MSG.:");
-    gotoxy(01, 24);
-    printf("+-----------------------------------------------------------------------------+");
+    imprimir_Linha(24);
 }
 
 void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria)

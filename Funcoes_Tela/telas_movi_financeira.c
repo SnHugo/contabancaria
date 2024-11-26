@@ -5,8 +5,7 @@ Objetivo do trecho: Telas onde são trabalhadas as Movimentacoes Financeiras
 */
 
 //include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
-
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria)
 {
     int opcao;

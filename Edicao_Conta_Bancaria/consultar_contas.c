@@ -5,7 +5,8 @@ Objetivo do trecho: Consultar as contas cadastradas de modo geral, por ordem de 
 */
 
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
+
 
 void consultar_contas(Lista_ContaBancaria *lista_contaBancaria)
 {

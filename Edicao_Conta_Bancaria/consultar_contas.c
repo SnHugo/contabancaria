@@ -4,7 +4,8 @@ Data: 25/11/2024
 Objetivo do trecho: Consultar as contas cadastradas de modo geral, por ordem de código e ordem alfabética
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+//#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 void consultar_contas(Lista_ContaBancaria *lista_contaBancaria)
 {
@@ -38,7 +39,7 @@ void consultar_contas(Lista_ContaBancaria *lista_contaBancaria)
             gotoxy(07, 23);
             printf("                                    ");
             gotoxy(7, 23);
-            printf("Voltando ao menu principal...");
+            printf("Voltando ao menu de contas...");
             getch();
             break;
 

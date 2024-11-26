@@ -1,4 +1,11 @@
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+/*
+Autor: Wesley Nobuyuki Tomimori Waterkemper
+Data: 25/11/2024
+Objetivo do trecho: Listar as movimentações financeiras
+*/
+
+//#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi)
 {

@@ -4,8 +4,8 @@ Data: 10/11/2024
 Objetivo do trecho: Realizar o cadastro de uma movimentacao financeira
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
-
+//#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y)
 {

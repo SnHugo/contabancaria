@@ -1,9 +1,11 @@
 /*
 Aluno: Wesley Nobuyuki Tomimori Waterkemper
-
+Data: 20/11/2024
+Objetivo do trecho: Validar a data para evitar o bug do milênio
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+//#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
 
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo)
 {

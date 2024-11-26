@@ -4,11 +4,12 @@ Data: 10/11/2024
 Objetivo do trecho: Telas onde são trabalhadas as Movimentacoes Financeiras
 */
 
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria)
 {
     int opcao;
+    int linha;
 
     do
     {
@@ -33,6 +34,7 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
             case 2:
                 break;
             case 3:
+                ListarMovi(lista_conta_bancaria, lista_movi_financeira);
                 break;
             case 4:
                 break;
@@ -42,6 +44,7 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
                 gotoxy(8, 23);
                 printf("Opcao Invalida!!!");
                 getch();
+                break;
         }
     }while (opcao != 4);
 }
@@ -54,15 +57,16 @@ void TelaCadastroMovimentacao()
     
     // Campos da tela da Conta
     CriarSubTela(2, 5, 78, 17);
-    ExibirCampoEContornoDigitavelFrente(4, 7, "Sequencial.:", 12);
+    ExibirCampoEContornoDigitavelFrente(4, 7, "Sequencial.:", 4);
     ExibirCampoEContornoDigitavelFrente(31, 7, "Codigo.:", 2);
-    ExibirCampoEContornoDigitavelFrente(55, 7, "Data.:", 12);
+    ExibirCampoEContornoDigitavelFrente(55, 7, "Data.:", 10);
     ExibirCampoEContornoDigitavelFrente(4, 10, "Banco.:", 20);
     ExibirCampoEContornoDigitavelFrente(34, 10, "Agencia:", 6);
     ExibirCampoEContornoDigitavelFrente(51, 10, "Tipo Conta:", 14);
     ExibirCampoEContornoDigitavelFrente(4, 13, "Num. Conta:", 8);
     ExibirCampoEContornoDigitavelFrente(28, 13, "Saldo:", 12);
     ExibirCampoEContornoDigitavelFrente(50, 13, "Limite:", 12);
+    ImprimirLinhaPorTamanho(2, 78, 15);
     gotoxy(4, 16);
     printf("Saldo Total (Saldo + Limite):");
 
@@ -78,29 +82,11 @@ void TelaCadastroMovimentacao()
     printf("Novo saldo........:");
 }
 
-void TelaExibirMovimentacoes()
+void TelaExibirContaDasMovimentacoes()
 {
     tela();
     gotoxy(18, 3);
     printf("    Consulta da Movimentacao Financeira    ");
-    gotoxy(2, 5);
-    printf("Codigo:");
-    // gotoxy(10, 5);
-    // printf("%d", 10);
-    // gotoxy(13, 5);
-    // printf("Banco do Brazil");
-    gotoxy(33, 5);
-    printf("Agenc:");
-    // gotoxy(40, 5);
-    // printf("1234-5");
-    gotoxy(47, 5);
-    printf("Cta:");
-    // gotoxy(52, 5);
-    // printf("123456-1");
-    gotoxy(61, 5);
-    printf("Tp:");
-    // gotoxy(65, 5);
-    // printf("Cartao Credito");
 
     ImprimirLinhaPorTamanho(1, 79, 6);
     ImprimirColunaPorTamanho(12, 4, 6);
@@ -108,20 +94,34 @@ void TelaExibirMovimentacoes()
     ImprimirColunaPorTamanho(46, 4, 6);
     ImprimirColunaPorTamanho(60, 4, 6);
 
+    ImprimirLinhaPorTamanho(2, 13, 8);
+    ImprimirLinhaPorTamanho(13, 35, 8);
+    ImprimirLinhaPorTamanho(35, 51, 8);
+    ImprimirLinhaPorTamanho(51, 64, 8);
+    ImprimirLinhaPorTamanho(65, 78, 8);
+
     gotoxy(3, 7);
     printf("Data Movi.");
-    gotoxy(16, 7);
+    gotoxy(14, 7);
     printf("Favorecido");
-    gotoxy(38, 7);
+    gotoxy(36, 7);
     printf("Tipo Movi.");
-    gotoxy(54, 7);
+    gotoxy(52, 7);
     printf("Valor Movi.");
-    gotoxy(67, 7);
+    gotoxy(66, 7);
     printf("Valor Saldo");
+}
 
-    ImprimirLinhaPorTamanho(2, 14, 8);
-    ImprimirLinhaPorTamanho(15, 36, 8);
-    ImprimirLinhaPorTamanho(37, 52, 8);
-    ImprimirLinhaPorTamanho(53, 65, 8);
-    ImprimirLinhaPorTamanho(66, 78, 8);
+void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha)
+{
+    gotoxy(3, linha);
+    printf("%s", reg_movi-> conteudo_movi.dt_movimento);
+    gotoxy(14, linha);
+    printf("%s", reg_movi-> conteudo_movi.favorecido);
+    gotoxy(36, linha);
+    printf("%s", reg_movi-> conteudo_movi.tp_movimentacao);
+    gotoxy(52, linha);
+    printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_movimento);
+    gotoxy(66, linha);
+    printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_saldo);
 }

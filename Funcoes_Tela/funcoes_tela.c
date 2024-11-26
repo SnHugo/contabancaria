@@ -4,7 +4,7 @@ Data: 27/10/2024
 Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
 */
 
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 // Montar a tela
 void tela()
@@ -302,4 +302,22 @@ void ImprimirColunaPorTamanho( int coluna, int linha_superior, int linha_inferio
 
     gotoxy(coluna, linha_inferior);
     printf("%c", 193);
+}
+
+void LimparMensagem()
+{
+    gotoxy(8, 23);
+    printf("                                                                      ");
+}
+
+void LimparPosicaoNaTela(int canto_supEsq_x, int canto_supEsq_y, int canto_infDir_x, int canto_infDir_y)
+{
+    for (int linha = canto_supEsq_y; linha <= canto_infDir_y; linha++)
+    {
+        for (int coluna = canto_supEsq_x; coluna <= canto_infDir_x; coluna++)
+        {
+            gotoxy(coluna, linha);
+            printf(" ");
+        }
+    }
 }

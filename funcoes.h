@@ -82,9 +82,13 @@ void tela_CadastroDeContas(Lista_ContaBancaria *lista_contaBancaria);
 void tela_digitacaoContas();
 void tela_listagem();
 
+
+
 // Telas de Movimentacao Financeira
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
 void TelaCadastroMovimentacao();
+void TelaExibirContaDasMovimentacoes();
+void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha);
 
 // Funcoes da Tela para posicionar os campos com espaco digitavel, sub telas, linhas e colunas com a tabela ASCCI
 void ExibirCampoEDigitacaoContornado(int x, int y, char campo[100], int espaco_digitavel);
@@ -93,9 +97,14 @@ void ExibirCampoEContornoDigitavelFrente(int x, int y, char campo[100], int espa
 void CriarSubTela(int canto_superiorEsq_x, int canto_superiorEsq_y, int canto_inferiorDir_x, int canto_inferiorDir_y);
 void ImprimirLinhaPorTamanho(int canto_esquerdo_x, int canto_direito_x, int linha);
 void ImprimirColunaPorTamanho( int coluna, int linha_superior, int linha_inferior);
+void LimparMensagem();
+void LimparPosicaoNaTela(int canto_supEsq_x, int canto_supEsq_y, int canto_infDir_x, int canto_infDir_y);
+
 
 // Funcoes para iniciar as listas
 void iniciar_lista(Lista_ContaBancaria *lista_contaBancaria, ListaMovimentacaoFinanceira *lista_movi_financeira);
+
+
 
 // Funcoes cadastro
 int contador(Lista_ContaBancaria *lista_contaBancaria);
@@ -110,11 +119,20 @@ void exibir_contas_geral(Lista_ContaBancaria *lista_contaBancaria);
 void consultar_ordem_alfabetica(Lista_ContaBancaria *lista_contaBancaria);
 void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria);
 
+
 // Funcoes Movimentacao Financeira
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
-TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria);
-char *ValidarTipoMovi();
-double ValidarValorMovi (char *tipo_movi);
+TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
+int ValidarSequencialMovi (ListaMovimentacaoFinanceira *lista_movi);
+char *ValidarTipoMovi ();
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
+char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo);
+TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
+ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMovimentacaoFinanceira *lista_movi);
+void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi);
+char *InverterData (char *dt_data);
+void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi);
+
 
 #endif

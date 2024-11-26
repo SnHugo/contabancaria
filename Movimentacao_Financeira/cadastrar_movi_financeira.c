@@ -4,37 +4,18 @@ Data: 10/11/2024
 Objetivo do trecho: Realizar o cadastro de uma movimentacao financeira
 */
 
-#include "C:\Users\User\Documents\Tudo em C\Estrutura de dados\funcoes.h"
+#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 
-char *InverterData (char *dt_data)
-{
-    char dia[3];
-    char mes[3];
-    char ano[5];
-
-    strncpy(dia, dt_data, 2);
-    dia[2] = '\0';
-    strncpy(mes, dt_data + 3, 2);
-    mes[2] = '\0';
-    strncpy(ano, dt_data + 6, 4);
-    ano[4] = '\0';
-
-    sprintf(dt_data, "%s/%s/%s", ano, mes, dia);
-
-    return dt_data;
-}
-
-TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria)
+TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y)
 {
     int codigo;
 
     do
     {
-        TelaCadastroMovimentacao();
         gotoxy(8, 23);
         printf("Digite 0 para sair...                                                ");
-        gotoxy(40, 7);
+        gotoxy(x, y);
         fflush(stdin);
         scanf("%d", &codigo);
 
@@ -69,11 +50,10 @@ char *ValidarTipoMovi ()
 
     do
     {
-        gotoxy(8, 23);
-        printf("                                                                      ");
+        LimparMensagem();
         gotoxy(8, 23);
         printf("1. Debito - 2. Credito");
-        gotoxy(23, 19);
+        gotoxy(23, 18);
         fflush(stdin);
         scanf("%d", &opcao);
 
@@ -89,30 +69,30 @@ char *ValidarTipoMovi ()
                 gotoxy(8, 23);
                 printf("Digite uma opcao valida");
                 getch();
-                gotoxy(8, 23);
-                printf("                                                                      ");
+                LimparMensagem();
         }
 
     }while(opcao != 1 && opcao != 2);
 
-    gotoxy(23, 19);
+    gotoxy(23, 18);
     printf("%s", tipo_movi);
+    LimparMensagem();
 
     return tipo_movi;
 }
 
-double ValidarValorMovi (char *tipo_movi)
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi)
 {
     double valor;
     do
     {
-
         gotoxy(23, 20);
+        fflush(stdin);
         scanf("%lf", &valor);
         
         if (valor > 0)
         {
-            if (strcmp(tipo_movi, "Debito") < 1)
+            if (strcmp(reg_movi.tp_movimentacao, "Debito") == 0)
             {
                 return -valor;
             }
@@ -126,25 +106,36 @@ double ValidarValorMovi (char *tipo_movi)
             gotoxy(8, 23);
             printf("Valor Invalido ou Saldo Insuficiente!!!                               ");
             getch();
-            gotoxy(8, 23);
-            printf("                                       ");
+            LimparMensagem();
             gotoxy(23, 20);
             printf("                ");
         }
     }while (TRUE);
 }
 
+int ValidarSequencialMovi (ListaMovimentacaoFinanceira *lista_movi)
+{
+    TipoApontadorMovi pont_movi = lista_movi-> Ultimo;
+
+    if (pont_movi != NULL)
+    {
+        return pont_movi-> conteudo_movi.sequencial + 1;
+    }
+    return 1;
+}
+
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi)
 {
     if (lista_movi-> Primeiro == NULL)
     {
-        lista_movi-> Primeiro = pont_movi;
         pont_movi-> anterior = NULL;
         pont_movi-> proximo = NULL;
+        lista_movi-> Primeiro = pont_movi;
     }
     else
     {
         pont_movi-> anterior = lista_movi-> Ultimo;
+        pont_movi-> proximo = NULL;
         lista_movi-> Ultimo-> proximo = pont_movi;
     }
     lista_movi-> Ultimo = pont_movi;
@@ -157,13 +148,13 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
     int resp_salvar;
     int resp_add;
 
-    pont_movi-> conteudo_movi.sequencial = 1;
+    reg_movi.sequencial = ValidarSequencialMovi(lista_movi_financeira);
     
     TelaCadastroMovimentacao();
     gotoxy(17, 7);
-    printf("%d", pont_movi-> conteudo_movi.sequencial);
+    printf("%d", reg_movi.sequencial);
 
-    TipoApontadorConta conta = ValidarConta(lista_conta_bancaria);
+    TipoApontadorConta conta = ValidarConta(lista_conta_bancaria, 40, 7);
     
     if (conta != NULL)
     {     
@@ -171,7 +162,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
         printf("%s", conta-> conteudo.banco);
         gotoxy(43, 10);
         printf("%s", conta-> conteudo.agencia);
-        gotoxy(67, 10);
+        gotoxy(63, 10);
         printf("%s", conta-> conteudo.tipo_conta);
         gotoxy(16, 13);
         printf("%s", conta-> conteudo.numero_conta);
@@ -182,37 +173,71 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
         gotoxy(34, 16);
         printf("%.2lf", conta-> conteudo.vl_saldo + conta-> conteudo.vl_limite);
 
+        strcpy(reg_movi.dt_movimento, ValidarData(lista_movi_financeira, conta-> conteudo.cd_conta));
+
         strcpy(reg_movi.tp_movimentacao, ValidarTipoMovi());
 
-        gotoxy(46, 19);
+        gotoxy(23, 19);
         fflush(stdin);
         fgets(reg_movi.favorecido, 30, stdin);
 
-        reg_movi.vl_movimento = ValidarValorMovi(reg_movi.tp_movimentacao);
+        reg_movi.vl_movimento = ValidarValorMovi(reg_movi);
 
-        gotoxy(46, 20);
+        gotoxy(23, 21);
         printf("%.2lf", (reg_movi.vl_saldo = conta-> conteudo.vl_saldo += (reg_movi.vl_movimento)));
 
-        gotoxy(8, 23);
-        printf("Deseja salvar a Movimentacao ? [1] Sim - [2] Nao:");
-        gotoxy(58, 23);
-        scanf("%d", &resp_salvar);
-
-        if (resp_salvar == 1)
+        do
         {
-            pont_movi-> conteudo_movi = reg_movi;
-            SalvarMoviNaLista(lista_movi_financeira, pont_movi);
-        }
+            gotoxy(8, 23);
+            printf("Deseja salvar a Movimentacao ? [1] Sim - [2] Nao:");
+            gotoxy(58, 23);
+            fflush(stdin);
+            scanf("%d", &resp_salvar);
+
+            switch (resp_salvar)
+            {
+                case 1:
+                    reg_movi.cd_conta = conta-> conteudo.cd_conta;
+                    pont_movi-> conteudo_movi = reg_movi;
+                    SalvarMoviNaLista(lista_movi_financeira, pont_movi);
+                    break;
+                case 2:
+                    break;
+                default:
+                    LimparMensagem();
+                    gotoxy(8, 23);
+                    printf("Digite uma opcao Valida!!!");
+                    getch();
+                    break;
+            }
+
+        }while (resp_salvar != 1 && resp_salvar != 2);
     }
 
-    gotoxy(8, 23);
-    printf("Deseja cadastrar outra Movimentacao ? [1] Sim - [2] Nao:");
-    gotoxy(65, 23);
-    fflush(stdin);
-    scanf("%d", &resp_add);
-
-    if (resp_add == 1)
+    do
     {
-        RealizarMovimentacao(lista_movi_financeira, lista_conta_bancaria);
-    }
+        gotoxy(8, 23);
+        printf("Deseja cadastrar outra Movimentacao ? [1] Sim - [2] Nao:");
+        gotoxy(65, 23);
+        fflush(stdin);
+        scanf("%d", &resp_add);
+
+        switch (resp_add)
+        {
+            case 1:
+                if (resp_add == 1)
+                {
+                    RealizarMovimentacao(lista_movi_financeira, lista_conta_bancaria);
+                }
+            case 2:
+                break;
+            default:
+                LimparMensagem();
+                gotoxy(8, 23);
+                printf("Digite uma opcao Valida!!!");
+                getch();
+                break;
+        }
+
+    }while (resp_add != 1 && resp_add != 2);
 }

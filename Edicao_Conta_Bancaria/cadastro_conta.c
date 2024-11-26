@@ -54,8 +54,6 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
             printf("                                                                          ");
             gotoxy(7, 23);
             printf("Digite 0 para sair");
-            gotoxy(25, 6);
-            printf("                                 ");
             gotoxy(30, 6);
             scanf("%d", &reg_conta.cd_conta);
             getchar();
@@ -114,7 +112,6 @@ void cadastrar_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)
         scanf(" %s", reg_conta.status);
 
         // Confirmação de gravação
-        
         gotoxy(7, 23);
         printf("                                                                          ");
         gotoxy(7, 23);

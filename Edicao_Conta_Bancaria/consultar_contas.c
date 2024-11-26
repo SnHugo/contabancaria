@@ -11,46 +11,46 @@ void consultar_contas(Lista_ContaBancaria *lista_contaBancaria)
     int opcao;
     tela_listagem();
 
+    do
+    {
+        system("cls");
+        tela_listagem();
         gotoxy(7, 23);
-        printf("                                                                          ");
-        gotoxy(07, 23);
-        printf("Digite 4 para sair");
-        gotoxy(27, 23);
+        printf("Digite uma opcao (4 para voltar): ");
+        gotoxy(42, 23);
         scanf("%d", &opcao);
 
-        do
+        switch (opcao)
         {
-            switch (opcao)
-            {
+        case 1:
+            exibir_contas_geral(lista_contaBancaria);
+            break;
 
-            // Consulta geral
-            case 1:
-                exibir_contas_geral(lista_contaBancaria);
-                break;
+        case 2:
+            consultar_ordem_alfabetica(lista_contaBancaria);
+            break;
 
-            // Consulta por ordem de código
-            case 2:
-                consultar_conta_ordem_cd(lista_contaBancaria);
-                break;
+        case 3:
+            consultar_conta_ordem_cd(lista_contaBancaria);
+            break;
 
-            // Consulta em ordem alfabética
-            case 3:
-                consultar_ordem_alfabetica(lista_contaBancaria);
-                break;
+        case 4:
+            gotoxy(07, 23);
+            printf("                                    ");
+            gotoxy(7, 23);
+            printf("Voltando ao menu principal...");
+            getch();
+            break;
 
-            case 4:
-                break;
-
-            default:
-                gotoxy(07, 23);
-                printf("                                                                        ");
-                gotoxy(07, 23);
-                printf("Opcao de consulta invalida.");
-                getch();
-            }
-
-        } while (opcao != 4);
-
+        default:
+            gotoxy(07, 23);
+            printf("                                    ");
+            gotoxy(7, 23);
+            printf("Opcao invalida!!!");
+            getch();
+            break;
+        }
+    } while (opcao != 4);
 }
 
 // Exibir as contas de forma geral
@@ -76,6 +76,9 @@ void exibir_contas_geral(Lista_ContaBancaria *lista_contaBancaria)
 
     system("cls");
     tela();
+
+    gotoxy(10, 6);
+    printf("=== Contas Cadastradas ===");
 
     while (aux != NULL)
     {
@@ -149,23 +152,38 @@ void consultar_ordem_alfabetica(Lista_ContaBancaria *lista_contaBancaria)
     {
         system("cls");
         tela();
-        gotoxy(10, 15);
-        printf("Código: %d | Banco: %s | Agência: %s | Número: %s | Tipo: %s | Saldo: %.2f | Limite: %.2f | Status: %s\n",
-               contas[i].cd_conta, contas[i].banco, contas[i].agencia, contas[i].numero_conta,
-               contas[i].tipo_conta, contas[i].vl_saldo, contas[i].vl_limite, contas[i].status);
+        gotoxy(15, 6);
+        printf("=== Contas por ordem alfabetica ===");
+
+        gotoxy(07, 7);
+        printf("Codigo...............: %d", contas[i].cd_conta);
+        gotoxy(07, 9);
+        printf("Banco................: %s", contas[i].banco);
+        gotoxy(07, 11);
+        printf("Agencia..............: %s", contas[i].agencia);
+        gotoxy(07, 13);
+        printf("Numero da conta......: %s", contas[i].numero_conta);
+        gotoxy(07, 15);
+        printf("Tipo da conta........: %s", contas[i].tipo_conta);
+        gotoxy(07, 17);
+        printf("Saldo................: %.2lf", contas[i].vl_saldo);
+        gotoxy(07, 19);
+        printf("Limite...............: %.2lf", contas[i].vl_limite);
+        gotoxy(07, 21);
+        printf("Status...............: %s", contas[i].status);
+
+        getch();
     }
 
     free(contas);
 }
 void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria)
 {
-
     TipoApontadorConta aux = lista_contaBancaria->Primeiro;
     int n = contador(lista_contaBancaria);
 
     if (n == 0)
     {
-
         gotoxy(07, 23);
         printf("                                                                        ");
         gotoxy(07, 23);
@@ -174,7 +192,7 @@ void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria)
         return;
     }
 
-    ContaBancaria *contas = (ContaBancaria *)malloc(n * sizeof(TipoConta));
+    ContaBancaria *contas = (ContaBancaria *)malloc(n * sizeof(ContaBancaria));
 
     if (contas == NULL)
     {
@@ -182,6 +200,7 @@ void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria)
         printf("                                                                        ");
         gotoxy(07, 23);
         printf("Erro na alocação de memória.");
+        getch();
         return;
     }
 
@@ -204,16 +223,33 @@ void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria)
         }
     }
 
-    printf("=== Contas em Ordem Crescente dos Códigos ===");
     for (int i = 0; i < n; i++)
     {
         system("cls");
         tela();
-        gotoxy(10, 15);
-        printf("Código: %d | Banco: %s | Agência: %s | Número: %s | Saldo: %.2lf\n",
-               contas[i].cd_conta, contas[i].banco, contas[i].agencia,
-               contas[i].numero_conta, contas[i].vl_saldo);
+        gotoxy(15, 6);
+        printf("=== Contas em Ordem Crescente dos Codigos ===");
+
+        gotoxy(07, 7);
+        printf("Codigo...............: %d", contas[i].cd_conta);
+        gotoxy(07, 9);
+        printf("Banco................: %s", contas[i].banco);
+        gotoxy(07, 11);
+        printf("Agencia..............: %s", contas[i].agencia);
+        gotoxy(07, 13);
+        printf("Numero da conta......: %s", contas[i].numero_conta);
+        gotoxy(07, 15);
+        printf("Tipo da conta........: %s", contas[i].tipo_conta);
+        gotoxy(07, 17);
+        printf("Saldo................: %.2lf", contas[i].vl_saldo);
+        gotoxy(07, 19);
+        printf("Limite...............: %.2lf", contas[i].vl_limite);
+        gotoxy(07, 21);
+        printf("Status...............: %s", contas[i].status);
+
+        getch();
     }
 
+    // Isso aqui é pra liberar a alocaçao da memoria
     free(contas);
 }

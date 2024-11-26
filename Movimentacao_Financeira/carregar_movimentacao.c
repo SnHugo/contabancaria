@@ -1,5 +1,9 @@
 /*
-Autor: Hugo Cesar Fernandes de Macedo
+Autor: Wesley Nobuyuki Tomimori Waterkemper
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Data: 26/11/2024
 Objetivo do trecho: Função para carregar as movimentações financeiras salvas
 */

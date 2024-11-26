@@ -1,5 +1,9 @@
 /*
 Autor: Wesley Nobuyuki Tomimori Waterkemper
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Data: 25/11/2024
 Objetivo do trecho: Listar as movimentações financeiras
 */
@@ -34,7 +38,7 @@ ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMoviment
             if (codigo_conta == aux_movi-> conteudo_movi.cd_conta)
             {
                 TipoApontadorMovi novo_movi = (TipoApontadorMovi)malloc(sizeof(TipoMovimentacao));
-                
+
                 novo_movi-> conteudo_movi = aux_movi-> conteudo_movi;
                 if (lista_movi_da_conta-> Primeiro == NULL)
                 {
@@ -133,27 +137,30 @@ void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *l
         getch();
     }
 
-    LimparMensagem();
-    gotoxy(8, 23);
-    printf("Deseja Consultar as Movimentacoes de Outra Conta ? [1]Sim [2]Nao:");
-    gotoxy(74, 23);
-    fflush(stdin);
-    scanf("%d", &resp_consulta);
-
-    switch (resp_consulta)
+    do
     {
-        case 1:
-            if (resp_consulta == 1)
-            {
-                ListarMovi(lista_conta, lista_movi);
-            }
-        case 2:
-            break;
-        default:
-            LimparMensagem();
-            gotoxy(8, 23);
-            printf("Digite uma opcao Valida!!!");
-            getch();
-            break;
-    }
+        LimparMensagem();
+        gotoxy(8, 23);
+        printf("Deseja Consultar as Movimentacoes de Outra Conta ? [1]Sim [2]Nao:");
+        gotoxy(74, 23);
+        fflush(stdin);
+        scanf("%d", &resp_consulta);
+
+        switch (resp_consulta)
+        {
+            case 1:
+                if (resp_consulta == 1)
+                {
+                    ListarMovi(lista_conta, lista_movi);
+                }
+            case 2:
+                break;
+            default:
+                LimparMensagem();
+                gotoxy(8, 23);
+                printf("Digite uma opcao Valida!!!");
+                getch();
+                break;
+        }
+    }while (resp_consulta != 1 && resp_consulta != 2);
 }

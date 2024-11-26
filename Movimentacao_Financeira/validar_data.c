@@ -1,5 +1,9 @@
 /*
 Aluno: Wesley Nobuyuki Tomimori Waterkemper
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Data: 20/11/2024
 Objetivo do trecho: Validar a data para evitar o bug do milênio
 */

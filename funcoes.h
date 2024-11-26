@@ -1,6 +1,10 @@
 /*
 Autor: Hugo Cesar Fernandes de Macedo || Wesley Nobuyuki Waterkemper
 Data: 24/10/2024
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Objetivo do trecho: Criar as demais structs para criação de contas bancárias e movimentação
 */
 

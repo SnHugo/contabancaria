@@ -1,5 +1,9 @@
 /*
-Autor: Wesley Nobuyuki Tomimori Waterkemper 
+Autor: Wesley Nobuyuki Tomimori Waterkemper
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Data: 10/11/2024
 Objetivo do trecho: Telas onde são trabalhadas as Movimentacoes Financeiras
 */

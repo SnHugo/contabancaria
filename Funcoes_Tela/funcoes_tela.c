@@ -1,5 +1,9 @@
 /*
 Autor: Hugo Cesar Fernandes de Macedo
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Data: 27/10/2024
 Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
 */
@@ -54,8 +58,10 @@ void tela()
     printf("| UNICV");
     gotoxy(60, 02);
     printf("Estrutura de Dados |");
-    gotoxy(66, 03);
+    gotoxy(66, 02);
     printf("Prof. Rodney");
+    gotoxy(57, 3);
+    printf("Alunos: Hugo e Wesley");
     gotoxy(01, 03);
     printf("|");
     gotoxy(20, 02);

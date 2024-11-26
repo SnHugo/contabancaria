@@ -1,6 +1,10 @@
 /*
 Autor: Wesley Nobuyuki
 Data: 20/10/2024
+
+    Nome: Hugo Cesar Fernandes de Macedo        RA: 161548-2023
+    Nome: Wesley Nobuyuki Tomimori Waterkemper  RA: 175944-2024
+
 Objetivo do trecho: Declaração da função main integrando o controle do usuário
 */
 

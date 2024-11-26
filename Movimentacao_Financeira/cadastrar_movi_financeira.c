@@ -81,17 +81,18 @@ char *ValidarTipoMovi ()
     return tipo_movi;
 }
 
-double ValidarValorMovi (char *tipo_movi)
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi)
 {
     double valor;
     do
     {
         gotoxy(23, 20);
+        fflush(stdin);
         scanf("%lf", &valor);
         
         if (valor > 0)
         {
-            if (strcmp(tipo_movi, "Debito") == 0)
+            if (strcmp(reg_movi.tp_movimentacao, "Debito") == 0)
             {
                 return -valor;
             }
@@ -112,22 +113,33 @@ double ValidarValorMovi (char *tipo_movi)
     }while (TRUE);
 }
 
-// void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi)
-// {
-//     if (lista_movi-> Primeiro == NULL)
-//     {
-//         pont_movi-> anterior = NULL;
-//         pont_movi-> proximo = NULL;
-//         lista_movi-> Primeiro = pont_movi;
-//     }
-//     else
-//     {
-//         pont_movi-> anterior = lista_movi-> Ultimo;
-//         pont_movi-> proximo = NULL;
-//         pont_movi = lista_movi-> Ultimo-> proximo;
-//     }
-//     lista_movi-> Ultimo = pont_movi;
-// }
+int ValidarSequencialMovi (ListaMovimentacaoFinanceira *lista_movi)
+{
+    TipoApontadorMovi pont_movi = lista_movi-> Ultimo;
+
+    if (pont_movi != NULL)
+    {
+        return pont_movi-> conteudo_movi.sequencial + 1;
+    }
+    return 1;
+}
+
+void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi)
+{
+    if (lista_movi-> Primeiro == NULL)
+    {
+        pont_movi-> anterior = NULL;
+        pont_movi-> proximo = NULL;
+        lista_movi-> Primeiro = pont_movi;
+    }
+    else
+    {
+        pont_movi-> anterior = lista_movi-> Ultimo;
+        pont_movi-> proximo = NULL;
+        lista_movi-> Ultimo-> proximo = pont_movi;
+    }
+    lista_movi-> Ultimo = pont_movi;
+}
 
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria)
 {
@@ -136,7 +148,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
     int resp_salvar;
     int resp_add;
 
-    reg_movi.sequencial = 1;
+    reg_movi.sequencial = ValidarSequencialMovi(lista_movi_financeira);
     
     TelaCadastroMovimentacao();
     gotoxy(17, 7);
@@ -169,7 +181,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
         fflush(stdin);
         fgets(reg_movi.favorecido, 30, stdin);
 
-        reg_movi.vl_movimento = ValidarValorMovi(reg_movi.tp_movimentacao);
+        reg_movi.vl_movimento = ValidarValorMovi(reg_movi);
 
         gotoxy(23, 21);
         printf("%.2lf", (reg_movi.vl_saldo = conta-> conteudo.vl_saldo += (reg_movi.vl_movimento)));
@@ -187,19 +199,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
                 case 1:
                     reg_movi.cd_conta = conta-> conteudo.cd_conta;
                     pont_movi-> conteudo_movi = reg_movi;
-                    if (lista_movi_financeira-> Primeiro == NULL)
-                    {
-                        pont_movi-> anterior = NULL;
-                        pont_movi-> proximo = NULL;
-                        lista_movi_financeira-> Primeiro = pont_movi;
-                    }
-                    else
-                    {
-                        pont_movi-> anterior = lista_movi_financeira-> Ultimo;
-                        pont_movi-> proximo = NULL;
-                        pont_movi = lista_movi_financeira-> Ultimo-> proximo;
-                    }
-                    lista_movi_financeira-> Ultimo = pont_movi;
+                    SalvarMoviNaLista(lista_movi_financeira, pont_movi);
                     break;
                 case 2:
                     break;
@@ -207,6 +207,8 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
                     LimparMensagem();
                     gotoxy(8, 23);
                     printf("Digite uma opcao Valida!!!");
+                    getch();
+                    break;
             }
 
         }while (resp_salvar != 1 && resp_salvar != 2);
@@ -233,6 +235,8 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
                 LimparMensagem();
                 gotoxy(8, 23);
                 printf("Digite uma opcao Valida!!!");
+                getch();
+                break;
         }
 
     }while (resp_add != 1 && resp_add != 2);

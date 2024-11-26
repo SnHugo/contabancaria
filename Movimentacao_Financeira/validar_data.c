@@ -11,22 +11,16 @@ TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int 
 
     if (pont_movi != NULL)
     {
-        while (pont_movi-> anterior != NULL)
+        while (pont_movi != NULL)
         {
             if (pont_movi->conteudo_movi.cd_conta == codigo)
             {
                 return pont_movi;
             }
+            pont_movi = pont_movi-> anterior;
         }
     }
-    else
-    {
-        LimparMensagem();
-        gotoxy(8, 23);
-        printf("Erro: Nenhuma movimentacao foi encontrada!!!");
-        getch();
-        LimparMensagem();
-    }
+
     return NULL;
 }
 
@@ -75,7 +69,7 @@ char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo)
         mes_inserido = atoi(&dt_inserida[5]);
         dia_inserido = atoi(&dt_inserida[8]);
 
-        if (dt_inserida[4] != '/' || dt_inserida[7] != '/')
+        if (dt_inserida[4] != '/' && dt_inserida[7] != '/')
         {
             gotoxy(8, 23);
             printf("Erro: Formato Invalido!!! (DD/MM/AAAA)");
@@ -89,10 +83,10 @@ char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo)
         {
             strcpy(dt_ultima, InverterData(pont_movi-> conteudo_movi.dt_movimento));
         
-            if (strcmp(dt_inserida, dt_ultima) > 0)
+            if (strcmp(dt_inserida, dt_ultima) < 0)
             {
                 gotoxy(8, 23);
-                printf("Erro: Digite uma data maior que %s", pont_movi-> conteudo_movi.dt_movimento);
+                printf("Erro: Digite uma data maior ou igual a %s", pont_movi-> conteudo_movi.dt_movimento);
                 getch();
                 gotoxy(8, 23);
                 LimparMensagem();

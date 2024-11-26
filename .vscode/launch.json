@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Trabalho_ControleBancario/Trabalho_ControleBancario/Funcoes_Tela",
-      "program": "c:/Trabalho_ControleBancario/Trabalho_ControleBancario/Funcoes_Tela/build/Debug/outDebug",
+      "cwd": "c:/Trabalho_ControleBancario",
+      "program": "c:/Trabalho_ControleBancario/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -1,45 +1,61 @@
 #include "C:\Trabalho_ControleBancario\funcoes.h"
 
+void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi)
+{
+    TipoApontadorMovi pont = lista_movi-> Primeiro;
+    TipoApontadorMovi prox;
 
+    while (pont != NULL)
+    {
+        prox = pont-> proximo;
+        free(pont);
+        pont = prox;
+    }
+    free(lista_movi);
+}
 
-// ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(TipoApontador reg_conta, ListaMovimentacaoFinanceira *lista_movi)
-// {
-//     TipoApontadorMovi aux_movi = lista_movi-> Primeiro;
-
-//     if (aux_movi != NULL)
-//     {
-
-//         while (aux_movi != NULL)
-//         {
-//             if (reg_conta-> conteudo.cd_conta == aux_movi-> conteudo_movi.cd_conta)
-//             {
-//                 if (lista_movi_da_conta-> Primeiro == NULL)
-//                 {
-//                     aux_movi-> anterior = NULL;
-//                     aux_movi-> proximo = NULL;
-//                     lista_movi_da_conta-> Primeiro = aux_movi;
-//                 }
-//                 else
-//                 {
-//                     aux_movi-> anterior = lista_movi_da_conta-> Ultimo;
-//                     aux_movi-> proximo = NULL;
-//                     aux_movi = lista_movi_da_conta-> Ultimo-> proximo;
-//                 }
-//                 lista_movi_da_conta-> Ultimo = aux_movi;
-//             }
-//             aux_movi = aux_movi-> proximo;
-//         }
-//         return lista_movi_da_conta;
-//     }
-//     else
-//     {
-//         gotoxy(8, 23);
-//         printf("Erro: Lista Vazia!!!");
-//         getch();
-//         LimparMensagem();
-//     }
-//     return NULL;
-// }
+ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMovimentacaoFinanceira *lista_movi)
+{
+    TipoApontadorMovi aux_movi = lista_movi-> Primeiro;
+    ListaMovimentacaoFinanceira *lista_movi_da_conta;
+    lista_movi_da_conta-> Primeiro = NULL;
+    lista_movi_da_conta-> Ultimo = NULL;
+    
+    if (aux_movi != NULL)
+    {
+        while (aux_movi != NULL)
+        {
+            if (codigo_conta == aux_movi-> conteudo_movi.cd_conta)
+            {
+                TipoApontadorMovi novo_movi = (TipoApontadorMovi)malloc(sizeof(TipoMovimentacao));
+                novo_movi-> conteudo_movi = aux_movi-> conteudo_movi;
+                if (lista_movi_da_conta-> Primeiro == NULL)
+                {
+                    novo_movi-> anterior = NULL;
+                    novo_movi-> proximo = NULL;
+                    lista_movi_da_conta-> Primeiro = novo_movi;
+                }
+                else
+                {
+                    novo_movi-> anterior = lista_movi_da_conta-> Ultimo;
+                    novo_movi-> proximo = NULL;
+                    lista_movi_da_conta-> Ultimo-> proximo = novo_movi;
+                }
+                lista_movi_da_conta-> Ultimo = novo_movi;
+            }
+            aux_movi = aux_movi-> proximo;
+        }
+        return lista_movi_da_conta;
+    }
+    else
+    {
+        gotoxy(8, 23);
+        printf("Erro: Lista Vazia!!!");
+        getch();
+        LimparMensagem();
+    }
+    return NULL;
+}
 
 void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi)
 {
@@ -78,20 +94,29 @@ void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *l
         return;
     }
 
-    // lista_movi_da_conta = BuscarMoviPorCodigo(conta_selecionada, lista_movi);
-    reg_movi = lista_movi-> Primeiro;
+    lista_movi_da_conta = BuscarMoviPorCodigo(conta_selecionada-> conteudo.cd_conta, lista_movi);
+    reg_movi = lista_movi_da_conta-> Primeiro;
 
     if (reg_movi != NULL)
     {
         while (reg_movi != NULL)
         {
-            if (conta_selecionada-> conteudo.cd_conta == reg_movi-> conteudo_movi.cd_conta)
+            TelaExibirMovimentacoesCadastradas(reg_movi, linha);
+            reg_movi = reg_movi-> proximo;
+            if (linha == 21)
             {
-                TelaExibirMovimentacoesCadastradas(reg_movi, linha);
-                reg_movi = reg_movi-> proximo;
+                gotoxy(8, 23);
+                printf("Pressione qualquer tecla para ver as proximas Movimentacoes...");
+                getch();
+                LimparPosicaoNaTela(3, 8, 77, 21);
+                linha = 8;
+            }
+            else
+            {
                 linha++;
             }
         }
+        LiberarMemoriaLista(lista_movi_da_conta);
     }
     else
     {

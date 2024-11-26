@@ -123,13 +123,16 @@ void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria);
 // Funcoes Movimentacao Financeira
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
 TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
+int ValidarSequencialMovi (ListaMovimentacaoFinanceira *lista_movi);
 char *ValidarTipoMovi ();
-double ValidarValorMovi (char *tipo_movi);
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
 char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo);
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
-ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(TipoApontadorConta reg_conta, ListaMovimentacaoFinanceira *lista_movi);
+ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMovimentacaoFinanceira *lista_movi);
 void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi);
 char *InverterData (char *dt_data);
+void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi);
+
 
 #endif

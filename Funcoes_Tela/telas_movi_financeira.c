@@ -44,6 +44,7 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
                 gotoxy(8, 23);
                 printf("Opcao Invalida!!!");
                 getch();
+                break;
         }
     }while (opcao != 4);
 }
@@ -56,15 +57,16 @@ void TelaCadastroMovimentacao()
     
     // Campos da tela da Conta
     CriarSubTela(2, 5, 78, 17);
-    ExibirCampoEContornoDigitavelFrente(4, 7, "Sequencial.:", 12);
+    ExibirCampoEContornoDigitavelFrente(4, 7, "Sequencial.:", 4);
     ExibirCampoEContornoDigitavelFrente(31, 7, "Codigo.:", 2);
-    ExibirCampoEContornoDigitavelFrente(55, 7, "Data.:", 12);
+    ExibirCampoEContornoDigitavelFrente(55, 7, "Data.:", 10);
     ExibirCampoEContornoDigitavelFrente(4, 10, "Banco.:", 20);
     ExibirCampoEContornoDigitavelFrente(34, 10, "Agencia:", 6);
     ExibirCampoEContornoDigitavelFrente(51, 10, "Tipo Conta:", 14);
     ExibirCampoEContornoDigitavelFrente(4, 13, "Num. Conta:", 8);
     ExibirCampoEContornoDigitavelFrente(28, 13, "Saldo:", 12);
     ExibirCampoEContornoDigitavelFrente(50, 13, "Limite:", 12);
+    ImprimirLinhaPorTamanho(2, 78, 15);
     gotoxy(4, 16);
     printf("Saldo Total (Saldo + Limite):");
 
@@ -92,21 +94,21 @@ void TelaExibirContaDasMovimentacoes()
     ImprimirColunaPorTamanho(46, 4, 6);
     ImprimirColunaPorTamanho(60, 4, 6);
 
-    ImprimirLinhaPorTamanho(2, 14, 8);
-    ImprimirLinhaPorTamanho(15, 36, 8);
-    ImprimirLinhaPorTamanho(37, 52, 8);
-    ImprimirLinhaPorTamanho(53, 65, 8);
-    ImprimirLinhaPorTamanho(66, 78, 8);
+    ImprimirLinhaPorTamanho(2, 13, 8);
+    ImprimirLinhaPorTamanho(13, 35, 8);
+    ImprimirLinhaPorTamanho(35, 51, 8);
+    ImprimirLinhaPorTamanho(51, 64, 8);
+    ImprimirLinhaPorTamanho(65, 78, 8);
 
     gotoxy(3, 7);
     printf("Data Movi.");
-    gotoxy(16, 7);
+    gotoxy(14, 7);
     printf("Favorecido");
-    gotoxy(38, 7);
+    gotoxy(36, 7);
     printf("Tipo Movi.");
-    gotoxy(54, 7);
+    gotoxy(52, 7);
     printf("Valor Movi.");
-    gotoxy(67, 7);
+    gotoxy(66, 7);
     printf("Valor Saldo");
 }
 
@@ -114,16 +116,12 @@ void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha)
 {
     gotoxy(3, linha);
     printf("%s", reg_movi-> conteudo_movi.dt_movimento);
-    gotoxy(16, linha);
+    gotoxy(14, linha);
     printf("%s", reg_movi-> conteudo_movi.favorecido);
-    gotoxy(38, linha);
+    gotoxy(36, linha);
     printf("%s", reg_movi-> conteudo_movi.tp_movimentacao);
-    gotoxy(54, linha);
+    gotoxy(52, linha);
     printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_movimento);
-    gotoxy(67, linha);
+    gotoxy(66, linha);
     printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_saldo);
-    if (linha == 21)
-    {
-        LimparPosicaoNaTela(3, 8, 77, 21);
-    }
 }

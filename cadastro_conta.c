@@ -4,7 +4,7 @@ Data: 17/11/2024
 Objetivo do trecho: Criar e cadastrar a conta bancária
 */
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 // Funcao para contar os elementos da lista

@@ -9,7 +9,7 @@ Objetivo do trecho: Telas onde são trabalhadas as Movimentacoes Financeiras
 */
 
 //include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria)
 {
     int opcao;
@@ -36,6 +36,7 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
                 RealizarMovimentacao(lista_movi_financeira, lista_conta_bancaria);
                 break;
             case 2:
+                MoviEntreContas(lista_conta_bancaria, lista_movi_financeira);
                 break;
             case 3:
                 ListarMovi(lista_conta_bancaria, lista_movi_financeira);
@@ -128,4 +129,49 @@ void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha)
     printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_movimento);
     gotoxy(66, linha);
     printf("R$ %.2lf", reg_movi-> conteudo_movi.vl_saldo);
+}
+
+void TelaMoviEntreContasMovi (TipoApontadorConta conta_movi)
+{
+    tela();
+    gotoxy(3, 8);
+    printf("Codigo....: %d", conta_movi-> conteudo.cd_conta);
+    gotoxy(3, 9);
+    printf("Banco.....: %s", conta_movi-> conteudo.banco);
+    gotoxy(3, 10);
+    printf("Agencia...: %s", conta_movi-> conteudo.agencia);
+    gotoxy(3, 11);
+    printf("Tipo Conta: %s", conta_movi-> conteudo.tipo_conta);
+    gotoxy(3, 12);
+    printf("Num. Conta: %s", conta_movi-> conteudo.numero_conta);
+    gotoxy(3, 13);
+    printf("Saldo.....: %lf", conta_movi-> conteudo.vl_saldo);
+    gotoxy(3, 14);
+    printf("Limite....: %lf", conta_movi-> conteudo.vl_limite);
+    gotoxy(3, 15);
+    printf("Total.....: %lf", conta_movi-> conteudo.vl_saldo + conta_movi-> conteudo.vl_limite);
+
+    ImprimirColunaPorTamanho(34, 4, 24);
+}
+
+void TelaMoviEntreContasReceb (TipoApontadorConta conta_receb)
+{
+    gotoxy(35, 8);
+    printf("Codigo....: %d", conta_receb-> conteudo.cd_conta);
+    gotoxy(35, 9);
+    printf("Banco.....: %s", conta_receb-> conteudo.banco);
+    gotoxy(35, 10);
+    printf("Agencia...: %s", conta_receb-> conteudo.agencia);
+    gotoxy(35, 11);
+    printf("Tipo Conta: %s", conta_receb-> conteudo.tipo_conta);
+    gotoxy(35, 12);
+    printf("Num. Conta: %s", conta_receb-> conteudo.numero_conta);
+    gotoxy(35, 13);
+    printf("Saldo.....: %lf", conta_receb-> conteudo.vl_saldo);
+    gotoxy(35, 14);
+    printf("Limite....: %lf", conta_receb-> conteudo.vl_limite);
+    gotoxy(35, 15);
+    printf("Total.....: %lf", conta_receb-> conteudo.vl_saldo + conta_receb-> conteudo.vl_limite);
+
+    ImprimirLinhaPorTamanho(1, 79, 18);
 }

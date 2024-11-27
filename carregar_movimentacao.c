@@ -7,7 +7,7 @@ Autor: Wesley Nobuyuki Tomimori Waterkemper
 Data: 26/11/2024
 Objetivo do trecho: Função para carregar as movimentações financeiras salvas
 */
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 ListaMovimentacaoFinanceira carregar_movim() 

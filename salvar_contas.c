@@ -8,7 +8,7 @@ Data: 26/11/2024
 Objetivo do trecho: Salvar as contas no arquivo .DAT
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 void salvar_contas (Lista_ContaBancaria *lista_conta)

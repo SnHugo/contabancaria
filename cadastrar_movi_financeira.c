@@ -9,7 +9,7 @@ Objetivo do trecho: Realizar o cadastro de uma movimentacao financeira
 */
 
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int x, int y)
@@ -48,7 +48,7 @@ TipoApontadorConta ValidarConta (Lista_ContaBancaria *lista_conta_bancaria, int 
     }while (TRUE);
 }
 
-char *ValidarTipoMovi ()
+char *ValidarTipoMovi (int x, int y)
 {
     int opcao;
     char *tipo_movi = malloc(8 * sizeof(char));
@@ -56,7 +56,7 @@ char *ValidarTipoMovi ()
     do
     {
         LimparMensagem();
-        gotoxy(8, 23);
+        gotoxy(x, y);
         printf("1. Debito - 2. Credito");
         gotoxy(23, 18);
         fflush(stdin);
@@ -86,16 +86,16 @@ char *ValidarTipoMovi ()
     return tipo_movi;
 }
 
-double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta)
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta, int x, int y)
 {
     double valor;
     do
     {
-        gotoxy(23, 20);
+        gotoxy(x, y);
         fflush(stdin);
         scanf("%lf", &valor);
         
-        if (valor > 0 && (conta-> conteudo.vl_saldo + conta-> conteudo.vl_limite) > valor)
+        if (valor > 0 && (conta-> conteudo.vl_saldo + conta-> conteudo.vl_limite) >= valor)
         {
             if (strcmp(reg_movi.tp_movimentacao, "Debito") == 0)
             {
@@ -152,12 +152,10 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
     TipoApontadorMovi pont_movi = (TipoApontadorMovi)malloc(sizeof(TipoMovimentacao));
     int resp_salvar;
     int resp_add;
-
-    reg_movi.sequencial = ValidarSequencialMovi(lista_movi_financeira);
     
     TelaCadastroMovimentacao();
     gotoxy(17, 7);
-    printf("%d", reg_movi.sequencial);
+    printf("%d", reg_movi.sequencial = ValidarSequencialMovi(lista_movi_financeira));
 
     TipoApontadorConta conta = ValidarConta(lista_conta_bancaria, 40, 7);
     
@@ -178,15 +176,15 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
         gotoxy(34, 16);
         printf("%.2lf", conta-> conteudo.vl_saldo + conta-> conteudo.vl_limite);
 
-        strcpy(reg_movi.dt_movimento, ValidarData(lista_movi_financeira, conta-> conteudo.cd_conta));
+        strcpy(reg_movi.dt_movimento, ValidarData(lista_movi_financeira, conta-> conteudo.cd_conta, 62, 7));
 
-        strcpy(reg_movi.tp_movimentacao, ValidarTipoMovi());
+        strcpy(reg_movi.tp_movimentacao, ValidarTipoMovi(23, 18));
 
         gotoxy(23, 19);
         fflush(stdin);
         fgets(reg_movi.favorecido, 30, stdin);
 
-        reg_movi.vl_movimento = ValidarValorMovi(reg_movi, conta);
+        reg_movi.vl_movimento = ValidarValorMovi(reg_movi, conta, 23, 20);
 
         gotoxy(23, 21);
         printf("%.2lf", (reg_movi.vl_saldo = conta-> conteudo.vl_saldo += (reg_movi.vl_movimento)));

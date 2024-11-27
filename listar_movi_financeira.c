@@ -9,7 +9,8 @@ Objetivo do trecho: Listar as movimentações financeiras
 */
 
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
+
 void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi)
 {
     TipoApontadorMovi pont = lista_movi-> Primeiro;

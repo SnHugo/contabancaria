@@ -8,7 +8,7 @@ Data: 26/11/2024
 Objetivo do trecho: Funcao que que passa a movimentacao no fwrite.
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 void salvar_moviArquivo_lista(ListaMovimentacaoFinanceira *lista_movi, MovimentacaoFinanceira reg_movi)

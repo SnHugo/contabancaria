@@ -4,7 +4,7 @@ Data: 23/11/2024
 Objetivo do trecho: Funcao para que o usuario altere campos dos dados da conta
 */
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 void alterar_dados(Lista_ContaBancaria *lista_contaBancaria)

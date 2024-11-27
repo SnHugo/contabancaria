@@ -9,7 +9,7 @@ Objetivo do trecho: Validar a data para evitar o bug do milênio
 */
 
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo)
 {
@@ -51,7 +51,7 @@ char *InverterData (char *dt_data)
     return data_invertida;
 }
 
-char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo)
+char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo, int x, int y)
 {
     char *dt_data = malloc(sizeof(char) * 11);
     char dt_inserida[11];

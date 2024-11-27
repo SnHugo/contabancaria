@@ -5,7 +5,7 @@ Data: 21/11/2024
 Objetivo do trecho: Remoção das contas bancárias enquanto não há uma movimentação entre as mesmas.
 */
 
-#include "C:\Trabalho_ControleBancario\funcoes.h"//#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 void remover_conta(Lista_ContaBancaria *lista_contaBancaria, int opc)

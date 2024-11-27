@@ -7,7 +7,7 @@ Autor: Hugo Cesar Fernandes de Macedo
 Data: 27/10/2024
 Objetivo do trecho: Implementando as funções tela para cada funcionalidade do algoritmo
 */
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
 
 

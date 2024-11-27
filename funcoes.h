@@ -91,6 +91,11 @@ void TelaMoviFinanceira(ListaMovimentacaoFinanceira *lista_movi_financeira, List
 void TelaCadastroMovimentacao();
 void TelaExibirContaDasMovimentacoes();
 void TelaExibirMovimentacoesCadastradas(TipoApontadorMovi reg_movi, int linha);
+void TelaMoviEntreContasMovi (TipoApontadorConta conta_movi);
+void TelaMoviEntreContasReceb (TipoApontadorConta conta_receb);
+
+
+
 
 // Funcoes da Tela para posicionar os campos com espaco digitavel, sub telas, linhas e colunas com a tabela ASCCI
 void ExibirCampoEDigitacaoContornado(int x, int y, char campo[100], int espaco_digitavel);
@@ -125,15 +130,17 @@ void consultar_conta_ordem_cd(Lista_ContaBancaria *lista_contaBancaria);
 void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Lista_ContaBancaria *lista_conta_bancaria);
 TipoApontadorConta ValidarConta(Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
 int ValidarSequencialMovi(ListaMovimentacaoFinanceira *lista_movi);
-char *ValidarTipoMovi();
-double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta);
+char *ValidarTipoMovi (int x, int y);
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta, int x, int y);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
-char *ValidarData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
+char *ValidarData (ListaMovimentacaoFinanceira *lista_movi, int codigo, int x, int y);
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
 ListaMovimentacaoFinanceira *BuscarMoviPorCodigo(int codigo_conta, ListaMovimentacaoFinanceira *lista_movi);
 void ListarMovi(Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi);
 char *InverterData(char *dt_data);
 void LiberarMemoriaLista(ListaMovimentacaoFinanceira *lista_movi);
+void MoviEntreContas (Lista_ContaBancaria *lista_conta, ListaMovimentacaoFinanceira *lista_movi);
+
 
 // Funções para o .DAT salvar as contas
 ListaMovimentacaoFinanceira carregar_movim();

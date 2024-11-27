@@ -7,7 +7,7 @@ Autor: Wesley Nobuyuki Tomimori Waterkemper
 Data: 26/11/2024
 Objetivo do trecho: Funcao que que passa a conta no fwrite.
 */
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 Lista_ContaBancaria carregar_contas() 

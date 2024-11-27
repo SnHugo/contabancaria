@@ -4,7 +4,7 @@ Data: 23/11/2024
 Objetivo do trecho: Imprimir registro das contas selecionadas
 */
 //#include "C:\Trabalho_ControleBancario\funcoes.h"
-#include "C:\Trabalho_ControleBancario\funcoes.h"
+#include "funcoes.h"
 
 
 void imprimir_Registro(ContaBancaria reg_conta)

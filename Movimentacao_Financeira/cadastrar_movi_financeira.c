@@ -86,7 +86,7 @@ char *ValidarTipoMovi ()
     return tipo_movi;
 }
 
-double ValidarValorMovi (MovimentacaoFinanceira reg_movi)
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta)
 {
     double valor;
     do
@@ -95,7 +95,7 @@ double ValidarValorMovi (MovimentacaoFinanceira reg_movi)
         fflush(stdin);
         scanf("%lf", &valor);
         
-        if (valor > 0)
+        if (valor > 0 && (conta-> conteudo.vl_saldo + conta-> conteudo.vl_limite) > valor)
         {
             if (strcmp(reg_movi.tp_movimentacao, "Debito") == 0)
             {
@@ -186,7 +186,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
         fflush(stdin);
         fgets(reg_movi.favorecido, 30, stdin);
 
-        reg_movi.vl_movimento = ValidarValorMovi(reg_movi);
+        reg_movi.vl_movimento = ValidarValorMovi(reg_movi, conta);
 
         gotoxy(23, 21);
         printf("%.2lf", (reg_movi.vl_saldo = conta-> conteudo.vl_saldo += (reg_movi.vl_movimento)));

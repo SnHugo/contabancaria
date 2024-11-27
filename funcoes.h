@@ -126,7 +126,7 @@ void RealizarMovimentacao(ListaMovimentacaoFinanceira *lista_movi_financeira, Li
 TipoApontadorConta ValidarConta(Lista_ContaBancaria *lista_conta_bancaria, int x, int y);
 int ValidarSequencialMovi(ListaMovimentacaoFinanceira *lista_movi);
 char *ValidarTipoMovi();
-double ValidarValorMovi(MovimentacaoFinanceira reg_movi);
+double ValidarValorMovi (MovimentacaoFinanceira reg_movi, TipoApontadorConta conta);
 void SalvarMoviNaLista(ListaMovimentacaoFinanceira *lista_movi, TipoApontadorMovi pont_movi);
 char *ValidarData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
 TipoApontadorMovi BuscarUltimaData(ListaMovimentacaoFinanceira *lista_movi, int codigo);
